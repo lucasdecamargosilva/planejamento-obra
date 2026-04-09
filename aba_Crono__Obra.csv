@@ -1,0 +1,54 @@
+"Crie um cronograma de projeto nesta planilha.
+Digite o título desse projeto na célula B1. 
+As informações sobre como usar esta planilha, incluindo instruções para leitores de tela e o autor desta pasta de trabalho, estão na planilha Sobre.
+Continue navegando pela coluna A para saber mais.",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Insira o Nome da empresa na célula B2.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Insira o nome do Líder do projeto na célula B3. Insira a data de Início do projeto na célula E3. Início do projeto: o rótulo está na célula C3.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"A semana de exibição na célula E4 representa a semana inicial a ser exibida no cronograma do projeto na célula I4. A data de início do projeto é considerada Semana 1. Para alterar a semana de exibição, basta inserir um novo número da semana na célula E4.
+A data inicial para cada semana, começando com a semana de exibição na célula E4, começa na célula I4 e é calculada automaticamente. Há 8 semanas representadas nesse modo de exibição que vão da célula I4 a célula BF4.
+Você não deve modificar essas células.
+Semana de exibição: o rótulo está na célula C4.",,,Início do projeto:,,,,,2025-09-01 00:00:00,,,,,,,2025-10-01 00:00:00,,,,,,,2025-11-01 00:00:00,,,,,,,2025-12-01 00:00:00,,,,,,,2026-01-01 00:00:00,,,,,,,2026-02-01 00:00:00,,,,,,,2026-03-01 00:00:00,,,,,,,2026-04-01 00:00:00,,,,,,
+"As células I5 a BL5 contêm o número de dias da semana representado no bloco de células acima de cada célula de data e são calculadas automaticamente.
+Você não deve modificar essas células.
+A data de hoje é contornada em vermelho (hex #AD3815) a partir da data de hoje na linha 5, passando pela coluna de data inteira até o final do cronograma do projeto.",,,Semana de exibição:,0,,,,1899-12-18 00:00:00,1899-12-19 00:00:00,1899-12-20 00:00:00,1899-12-21 00:00:00,1899-12-22 00:00:00,1899-12-23 00:00:00,1899-12-24 00:00:00,1899-12-25 00:00:00,1899-12-26 00:00:00,1899-12-27 00:00:00,1899-12-28 00:00:00,1899-12-29 00:00:00,00:00:00,1900-01-01 00:00:00,1900-01-02 00:00:00,1900-01-03 00:00:00,1900-01-04 00:00:00,1900-01-05 00:00:00,1900-01-06 00:00:00,1900-01-07 00:00:00,1900-01-08 00:00:00,1900-01-09 00:00:00,1900-01-10 00:00:00,1900-01-11 00:00:00,1900-01-12 00:00:00,1900-01-13 00:00:00,1900-01-14 00:00:00,1900-01-15 00:00:00,1900-01-16 00:00:00,1900-01-17 00:00:00,1900-01-18 00:00:00,1900-01-19 00:00:00,1900-01-20 00:00:00,1900-01-21 00:00:00,1900-01-22 00:00:00,1900-01-23 00:00:00,1900-01-24 00:00:00,1900-01-25 00:00:00,1900-01-26 00:00:00,1900-01-27 00:00:00,1900-01-28 00:00:00,1900-01-29 00:00:00,1900-01-30 00:00:00,1900-01-31 00:00:00,1900-02-01 00:00:00,1900-02-02 00:00:00,1900-02-03 00:00:00,1900-02-04 00:00:00,1900-02-05 00:00:00,1900-02-06 00:00:00,1900-02-07 00:00:00,1900-02-08 00:00:00,1900-02-09 00:00:00,1900-02-10 00:00:00,1900-02-11 00:00:00,1900-02-12 00:00:00
+"Esta linha inclui cabeçalhos do cronograma do projeto que estão abaixo deles. 
+Navegue de B6 a BL6 para ouvir o conteúdo. A primeira letra de cada dia da semana da data acima daquele cabeçalho começa na célula I6 e continua até a célula BL6.
+Todo o gráfico de linha do tempo de projeto é gerado automaticamente com base nas datas de início e término inseridas, usando os formatos condicionais.
+Não modifique o conteúdo nas células dentro das colunas após a coluna I, começando na célula I7.",TAREFA,RESPONSÁVEL,PROGRESSO,INÍCIO,TÉRMINO,,DIAS,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d
+Não exclua esta linha. Esta linha ficará oculta para preservar uma fórmula usada para realçar o dia atual no cronograma do projeto. ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"A célula B8 contém o título do exemplo da Fase 1. 
+Insira um novo Título na célula B8.
+Na célula C8, insira o nome a atribuir à fase, caso ela se aplique ao seu projeto.
+Na célula D8, insira o Progresso para a fase inteira, caso ela se aplique ao seu projeto.
+Nas células E8 e F8, insira as datas de início e término para a fase inteira, caso ela se aplique ao seu projeto. 
+O gráfico de Gantt preenche automaticamente as datas apropriadas e sombreia de acordo com o andamento inserido.
+Para excluir a fase e trabalhar apenas nas tarefas, basta excluir essa linha.",SERVIÇOS PRELIMINARES,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"A célula B9 contém a tarefa de exemplo ""Tarefa 1"". 
+Insira um novo nome da tarefa na célula B9.
+Insira uma pessoa para atribuir a tarefa na célula C9.
+Insira o andamento da tarefa na célula D9. Uma barra de progresso é exibida na célula e fica sombreada de acordo com o número na célula. Por exemplo, 50% de progresso sombreia metade da célula.
+Insira a data de início da tarefa na célula E9.
+Insira a data de término da tarefa na célula F9.
+Uma barra de status sombreada das datas inseridas aparece em blocos começando na célula I9 até BL9. ",1. Canteiro de obra,THY Engenharia,1,2025-09-01 00:00:00,2025-09-01 00:00:00,,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"As linhas 10 a 13 repetem o padrão da linha 9. 
+Repita as instruções da célula A9 para todas as linhas de tarefas nesta planilha. Substitua os dados de exemplo.
+Um exemplo de outra fase começa na célula A14. 
+Continue inserindo tarefas nas células A10 a A13 ou vá para a célula A14 para saber mais.",2. Demolicao ,THY Engenharia,1,2025-09-01 00:00:00,2025-09-28 00:00:00,,28,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,3. Alvenaria terreo,THY Engenharia,1,2025-09-29 00:00:00,2025-10-27 00:00:00,,29,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,4. Alvenaria superior,THY Engenharia,1,2025-09-29 00:00:00,2025-10-27 00:00:00,,29,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,5. Cobertura,THY Engenharia,1,2025-10-28 00:00:00,2025-11-27 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,6. Infraestrutura de Hidraulica ,THY Engenharia,0.9,2025-10-28 00:00:00,2025-11-27 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,7. Infraestrutura  de eletrica ,THY Engenharia,0.9,2025-10-28 00:00:00,2025-11-27 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,8. Infraestrutura de ar-condicionado,THY Engenharia,0,2025-11-28 00:00:00,2025-12-27 00:00:00,,30,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,9. Reboco interno ,THY Engenharia,0,2025-11-28 00:00:00,2025-12-27 00:00:00,,30,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,10. Reboco externo ,THY Engenharia,0,2025-11-28 00:00:00,2025-12-27 00:00:00,,30,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,11. Acabamentos internos terreo,THY Engenharia,0,2025-12-28 00:00:00,2026-01-27 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,12. Acabamentos internos superior,THY Engenharia,0,2026-01-27 00:00:00,2026-02-26 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,13. Acabamentos externos,THY Engenharia,0,2026-02-27 00:00:00,2026-03-29 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,14. Forro de gesso,THY Engenharia,0,2026-03-30 00:00:00,2026-04-29 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,15. Pintura,THY Engenharia,0,2026-03-30 00:00:00,2026-05-30 00:00:00,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,16. Interruptores,THY Engenharia,0,2026-05-01 00:00:00,2026-05-31 00:00:00,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,17. Paisagismo,THY Engenharia,0,2026-05-01 00:00:00,2026-05-31 00:00:00,,31,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

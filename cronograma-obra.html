@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cronograma de Obra - Sobreda</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .header { text-align: center; margin-bottom: 32px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #f8fafc; margin-bottom: 4px; }
+  .header p { color: #94a3b8; font-size: 14px; }
+  .cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-bottom: 32px; max-width: 1200px; margin-left: auto; margin-right: auto;
+  }
+  .card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; }
+  .card-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 8px; }
+  .card-value { font-size: 28px; font-weight: 700; }
+  .card-sub { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+  .green { color: #4ade80; } .yellow { color: #fbbf24; } .red { color: #f87171; }
+  .blue { color: #60a5fa; } .cyan { color: #22d3ee; }
+  .section {
+    max-width: 1200px; margin: 0 auto 32px; background: #1e293b;
+    border-radius: 12px; padding: 24px; border: 1px solid #334155;
+  }
+  .section h2 { font-size: 16px; margin-bottom: 16px; color: #f8fafc; }
+  .overall-bar-container { background: #0f172a; border-radius: 8px; height: 32px; overflow: hidden; }
+  .overall-bar {
+    height: 100%; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; color: #fff;
+    background: linear-gradient(90deg, #d97706, #fbbf24); width: 40%;
+  }
+  .timeline-labels { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-top: 4px; }
+  .table-wrap { max-width: 1200px; margin: 0 auto 32px; background: #1e293b; border-radius: 12px; border: 1px solid #334155; overflow: hidden; }
+  .table-wrap h2 { font-size: 16px; padding: 20px 24px 16px; color: #f8fafc; }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: #0f172a; padding: 12px 16px; text-align: left;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    color: #64748b; border-bottom: 1px solid #334155;
+  }
+  tbody td { padding: 14px 16px; border-bottom: 1px solid rgba(51,65,85,0.5); font-size: 14px; }
+  tbody tr:hover { background: rgba(51,65,85,0.3); }
+  .progress-bar-bg { background: #0f172a; border-radius: 6px; height: 22px; overflow: hidden; width: 140px; }
+  .progress-bar-fill {
+    height: 100%; border-radius: 6px; display: flex; align-items: center;
+    padding-left: 8px; font-size: 11px; font-weight: 700; color: #fff;
+  }
+  .fill-done { background: linear-gradient(90deg, #059669, #34d399); }
+  .fill-wip { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+  .fill-none { background: #334155; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .b-done { background: rgba(4,120,87,0.2); color: #4ade80; }
+  .b-wip { background: rgba(8,145,178,0.2); color: #22d3ee; }
+  .b-pending { background: rgba(71,85,105,0.3); color: #94a3b8; }
+  .date-cell { white-space: nowrap; font-size: 13px; color: #94a3b8; }
+  .days-cell { text-align: center; font-weight: 600; color: #60a5fa; }
+  .gantt-row { display: flex; align-items: center; height: 36px; border-bottom: 1px solid rgba(51,65,85,0.3); }
+  .gantt-label { width: 200px; flex-shrink: 0; font-size: 12px; color: #cbd5e1; padding-right: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gantt-bar-area { flex: 1; position: relative; height: 100%; display: flex; align-items: center; }
+  .gantt-bar {
+    position: absolute; height: 20px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600; color: #fff; cursor: default;
+  }
+  .gantt-bar:hover { height: 26px; filter: brightness(1.2); z-index: 2; }
+  .gantt-months { display: flex; margin-left: 200px; margin-bottom: 4px; }
+  .gantt-month { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; text-align: center; }
+  .gantt-grid { position: relative; }
+  .formula-group { margin-bottom: 20px; }
+  .formula-group h3 { font-size: 13px; color: #818cf8; margin-bottom: 8px; }
+  .formula-item {
+    display: flex; gap: 12px; padding: 8px 12px; background: #0f172a;
+    border-radius: 6px; margin-bottom: 4px; font-family: 'Fira Code', monospace; font-size: 12px;
+  }
+  .formula-cell { color: #fbbf24; min-width: 60px; font-weight: 600; }
+  .formula-text { color: #94a3b8; }
+  .footer { text-align: center; color: #475569; font-size: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #1e293b; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Cronograma de Obra - Sobreda</h1>
+  <p>THY Engenharia &bull; Inicio: 01/09/2025 &bull; Previsao de conclusao: 31/05/2026</p>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="card-label">Total de Tarefas</div><div class="card-value blue">17</div><div class="card-sub">Servicos preliminares ate paisagismo</div></div>
+  <div class="card"><div class="card-label">Concluidas</div><div class="card-value green">5</div><div class="card-sub">100% finalizadas</div></div>
+  <div class="card"><div class="card-label">Em Andamento</div><div class="card-value yellow">2</div><div class="card-sub">Hidraulica e eletrica (90%)</div></div>
+  <div class="card"><div class="card-label">Pendentes</div><div class="card-value red">10</div><div class="card-sub">Ainda nao iniciadas</div></div>
+  <div class="card"><div class="card-label">Progresso Geral</div><div class="card-value cyan">40%</div><div class="card-sub">Media ponderada</div></div>
+</div>
+
+<div class="section">
+  <h2>Progresso Geral da Obra</h2>
+  <div class="overall-bar-container"><div class="overall-bar">40%</div></div>
+  <div class="timeline-labels"><span>01/09/2025</span><span>Hoje: 09/04/2026</span><span>31/05/2026</span></div>
+</div>
+
+<div class="table-wrap">
+  <h2>Detalhamento das Tarefas</h2>
+  <table>
+    <thead><tr><th>#</th><th>Tarefa</th><th>Responsavel</th><th>Inicio</th><th>Termino</th><th>Dias</th><th>Progresso</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td style="color:#64748b">1</td><td>Canteiro de obra</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">01/09/2025</td><td class="date-cell">01/09/2025</td><td class="days-cell">1</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-done" style="width:100%">100%</div></div></td><td><span class="badge b-done">Concluido</span></td></tr>
+      <tr><td style="color:#64748b">2</td><td>Demolicao</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">01/09/2025</td><td class="date-cell">28/09/2025</td><td class="days-cell">28</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-done" style="width:100%">100%</div></div></td><td><span class="badge b-done">Concluido</span></td></tr>
+      <tr><td style="color:#64748b">3</td><td>Alvenaria terreo</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">29/09/2025</td><td class="date-cell">27/10/2025</td><td class="days-cell">29</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-done" style="width:100%">100%</div></div></td><td><span class="badge b-done">Concluido</span></td></tr>
+      <tr><td style="color:#64748b">4</td><td>Alvenaria superior</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">29/09/2025</td><td class="date-cell">27/10/2025</td><td class="days-cell">29</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-done" style="width:100%">100%</div></div></td><td><span class="badge b-done">Concluido</span></td></tr>
+      <tr><td style="color:#64748b">5</td><td>Cobertura</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">28/10/2025</td><td class="date-cell">27/11/2025</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-done" style="width:100%">100%</div></div></td><td><span class="badge b-done">Concluido</span></td></tr>
+      <tr><td style="color:#64748b">6</td><td>Infraestrutura de Hidraulica</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">28/10/2025</td><td class="date-cell">27/11/2025</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-wip" style="width:90%">90%</div></div></td><td><span class="badge b-wip">Em andamento</span></td></tr>
+      <tr><td style="color:#64748b">7</td><td>Infraestrutura de Eletrica</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">28/10/2025</td><td class="date-cell">27/11/2025</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-wip" style="width:90%">90%</div></div></td><td><span class="badge b-wip">Em andamento</span></td></tr>
+      <tr><td style="color:#64748b">8</td><td>Infraestrutura de Ar-condicionado</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">28/11/2025</td><td class="date-cell">27/12/2025</td><td class="days-cell">30</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">9</td><td>Reboco interno</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">28/11/2025</td><td class="date-cell">27/12/2025</td><td class="days-cell">30</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">10</td><td>Reboco externo</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">28/11/2025</td><td class="date-cell">27/12/2025</td><td class="days-cell">30</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">11</td><td>Acabamentos internos terreo</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">28/12/2025</td><td class="date-cell">27/01/2026</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">12</td><td>Acabamentos internos superior</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">27/01/2026</td><td class="date-cell">26/02/2026</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">13</td><td>Acabamentos externos</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">27/02/2026</td><td class="date-cell">29/03/2026</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">14</td><td>Forro de gesso</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">30/03/2026</td><td class="date-cell">29/04/2026</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">15</td><td>Pintura</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">30/03/2026</td><td class="date-cell">30/05/2026</td><td class="days-cell">62</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">16</td><td>Interruptores</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">01/05/2026</td><td class="date-cell">31/05/2026</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+      <tr><td style="color:#64748b">17</td><td>Paisagismo</td><td style="color:#94a3b8;font-size:13px">THY Engenharia</td><td class="date-cell">01/05/2026</td><td class="date-cell">31/05/2026</td><td class="days-cell">31</td><td><div class="progress-bar-bg"><div class="progress-bar-fill fill-none" style="width:100%">0%</div></div></td><td><span class="badge b-pending">Pendente</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section" style="overflow-x:auto;">
+  <h2>Grafico de Gantt - Timeline Visual</h2>
+  <div id="ganttChart"></div>
+</div>
+
+<div class="section">
+  <h2>Formulas da Planilha Original</h2>
+
+  <div class="formula-group">
+    <h3>Calculo da Timeline (Linha 5 - Datas)</h3>
+    <div class="formula-item"><span class="formula-cell">I5</span><span class="formula-text">=Inicio_do_projeto - WEEKDAY(Inicio_do_projeto,1) + 2 + 7*(Semana_de_exibicao-1)</span></div>
+    <div class="formula-item"><span class="formula-cell">J5:BL5</span><span class="formula-text">=celula_anterior + 1 (incremento diario sequencial)</span></div>
+  </div>
+
+  <div class="formula-group">
+    <h3>Dias da Semana (Linha 6 - Cabecalho)</h3>
+    <div class="formula-item"><span class="formula-cell">I6:BL6</span><span class="formula-text">=LEFT(TEXT(I5,"ddd"),1) (primeira letra do dia: s, t, q, q, s, s, d)</span></div>
+  </div>
+
+  <div class="formula-group">
+    <h3>Calculo de Duracao (Coluna H)</h3>
+    <div class="formula-item"><span class="formula-cell">H7:H25</span><span class="formula-text">=IF(OR(ISBLANK(inicio_da_tarefa), ISBLANK(termino_da_tarefa)), "", termino - inicio + 1)</span></div>
+  </div>
+
+  <div class="formula-group">
+    <h3>Encadeamento de Datas (Colunas E-F)</h3>
+    <div class="formula-item"><span class="formula-cell">E10</span><span class="formula-text">=E9 (herda inicio da tarefa anterior - tarefas paralelas)</span></div>
+    <div class="formula-item"><span class="formula-cell">E11</span><span class="formula-text">=F10+1 (dia seguinte ao termino anterior - tarefas sequenciais)</span></div>
+    <div class="formula-item"><span class="formula-cell">F11</span><span class="formula-text">=E11+28 (duracao de ~1 mes por tarefa)</span></div>
+    <div class="formula-item"><span class="formula-cell">F23</span><span class="formula-text">=E23+61 (pintura: duracao de 2 meses)</span></div>
+  </div>
+</div>
+
+<div class="footer">Gerado automaticamente a partir da planilha Google Sheets &bull; Dados extraidos em 09/04/2026</div>
+
+<script>
+(function() {
+  const tasks = [
+    { id:1,  name:"Canteiro de obra",               p:100, s:"2025-09-01", e:"2025-09-01" },
+    { id:2,  name:"Demolicao",                       p:100, s:"2025-09-01", e:"2025-09-28" },
+    { id:3,  name:"Alvenaria terreo",                p:100, s:"2025-09-29", e:"2025-10-27" },
+    { id:4,  name:"Alvenaria superior",              p:100, s:"2025-09-29", e:"2025-10-27" },
+    { id:5,  name:"Cobertura",                       p:100, s:"2025-10-28", e:"2025-11-27" },
+    { id:6,  name:"Infra. Hidraulica",               p:90,  s:"2025-10-28", e:"2025-11-27" },
+    { id:7,  name:"Infra. Eletrica",                 p:90,  s:"2025-10-28", e:"2025-11-27" },
+    { id:8,  name:"Infra. Ar-condicionado",          p:0,   s:"2025-11-28", e:"2025-12-27" },
+    { id:9,  name:"Reboco interno",                  p:0,   s:"2025-11-28", e:"2025-12-27" },
+    { id:10, name:"Reboco externo",                  p:0,   s:"2025-11-28", e:"2025-12-27" },
+    { id:11, name:"Acab. internos terreo",           p:0,   s:"2025-12-28", e:"2026-01-27" },
+    { id:12, name:"Acab. internos superior",         p:0,   s:"2026-01-27", e:"2026-02-26" },
+    { id:13, name:"Acab. externos",                  p:0,   s:"2026-02-27", e:"2026-03-29" },
+    { id:14, name:"Forro de gesso",                  p:0,   s:"2026-03-30", e:"2026-04-29" },
+    { id:15, name:"Pintura",                         p:0,   s:"2026-03-30", e:"2026-05-30" },
+    { id:16, name:"Interruptores",                   p:0,   s:"2026-05-01", e:"2026-05-31" },
+    { id:17, name:"Paisagismo",                      p:0,   s:"2026-05-01", e:"2026-05-31" },
+  ];
+
+  const projectStart = new Date('2025-09-01T00:00:00');
+  const projectEnd = new Date('2026-05-31T00:00:00');
+  const totalDays = Math.round((projectEnd - projectStart) / 86400000);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const chart = document.getElementById('ganttChart');
+
+  // Months header
+  const monthsDiv = document.createElement('div');
+  monthsDiv.className = 'gantt-months';
+  let cur = new Date(projectStart);
+  while (cur <= projectEnd) {
+    const monthStart = new Date(cur.getFullYear(), cur.getMonth(), 1);
+    const monthEnd = new Date(cur.getFullYear(), cur.getMonth() + 1, 0);
+    const effStart = monthStart < projectStart ? projectStart : monthStart;
+    const effEnd = monthEnd > projectEnd ? projectEnd : monthEnd;
+    const span = Math.round((effEnd - effStart) / 86400000) + 1;
+    const m = document.createElement('div');
+    m.className = 'gantt-month';
+    m.style.width = ((span / totalDays) * 100) + '%';
+    m.textContent = effStart.toLocaleDateString('pt-BR', { month: 'short', year: '2-digit' });
+    monthsDiv.appendChild(m);
+    cur = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+  }
+  chart.appendChild(monthsDiv);
+
+  // Grid
+  const grid = document.createElement('div');
+  grid.className = 'gantt-grid';
+
+  tasks.forEach(function(t) {
+    const row = document.createElement('div');
+    row.className = 'gantt-row';
+
+    const label = document.createElement('div');
+    label.className = 'gantt-label';
+    label.textContent = t.id + '. ' + t.name;
+    row.appendChild(label);
+
+    const area = document.createElement('div');
+    area.className = 'gantt-bar-area';
+
+    const sDate = new Date(t.s + 'T00:00:00');
+    const eDate = new Date(t.e + 'T00:00:00');
+    const startOff = Math.round((sDate - projectStart) / 86400000);
+    const dur = Math.round((eDate - sDate) / 86400000) + 1;
+    const leftPct = (startOff / totalDays) * 100;
+    const widthPct = (dur / totalDays) * 100;
+
+    var color = '#475569';
+    if (t.p === 100) color = '#059669';
+    else if (t.p > 0) color = '#0891b2';
+
+    const bar = document.createElement('div');
+    bar.className = 'gantt-bar';
+    bar.style.left = leftPct + '%';
+    bar.style.width = widthPct + '%';
+    bar.style.background = color;
+    bar.style.opacity = t.p === 0 ? '0.5' : '1';
+    bar.title = t.name + ': ' + t.p + '% | ' + sDate.toLocaleDateString('pt-BR') + ' - ' + eDate.toLocaleDateString('pt-BR');
+    if (widthPct > 4) bar.textContent = t.p + '%';
+
+    area.appendChild(bar);
+    row.appendChild(area);
+    grid.appendChild(row);
+  });
+
+  // Today line
+  const todayOff = Math.round((today - projectStart) / 86400000);
+  if (todayOff >= 0 && todayOff <= totalDays) {
+    const line = document.createElement('div');
+    line.style.cssText = 'position:absolute;top:0;bottom:0;width:2px;background:#f87171;z-index:3;left:calc(200px + (100% - 200px) * ' + (todayOff / totalDays) + ')';
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'position:absolute;top:-18px;left:-16px;font-size:10px;color:#f87171;font-weight:600;white-space:nowrap';
+    lbl.textContent = 'HOJE';
+    line.appendChild(lbl);
+    grid.appendChild(line);
+  }
+
+  chart.appendChild(grid);
+})();
+</script>
+</body>
+</html>

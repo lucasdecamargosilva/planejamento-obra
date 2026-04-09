@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BI Dashboard — Obra Boa Vista Casa FL</title>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #06080f;
+  --bg-panel: #0c1019;
+  --bg-card: #111723;
+  --bg-card-hover: #161d2d;
+  --border: #1a2235;
+  --border-light: #243049;
+  --text-primary: #e8ecf4;
+  --text-secondary: #7a8ba8;
+  --text-muted: #4a5a78;
+  --accent-gold: #c9a84c;
+  --accent-gold-dim: rgba(201,168,76,0.15);
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-green: #22c55e;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-purple: #8b5cf6;
+  --accent-emerald: #10b981;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 4px 20px rgba(0,0,0,0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+/* ═══ TOPBAR ═══ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6,8,15,0.85);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.logo-mark {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--accent-gold), #a07c2e);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--bg-deep);
+}
+.topbar-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.topbar-title span { color: var(--text-muted); font-weight: 400; }
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.topbar-badge {
+  background: var(--accent-gold-dim);
+  color: var(--accent-gold);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.topbar-dot {
+  width: 8px; height: 8px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ═══ LAYOUT ═══ */
+.dashboard {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 24px 32px 64px;
+}
+
+/* ═══ PROJECT HEADER ═══ */
+.project-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  animation: fadeIn 0.6s ease;
+}
+.project-header h1 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+.project-header h1 small {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+.project-meta {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.meta-item {
+  text-align: right;
+}
+.meta-item .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.meta-item .value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ═══ SECTION TITLES ═══ */
+.section-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ═══ KPI CARDS ═══ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  animation: fadeSlideUp 0.5s ease 0.1s both;
+}
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s, border-color 0.2s;
+}
+.kpi-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-light);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+.kpi-card.gold::before { background: linear-gradient(90deg, var(--accent-gold), transparent); }
+.kpi-card.blue::before { background: linear-gradient(90deg, var(--accent-blue), transparent); }
+.kpi-card.cyan::before { background: linear-gradient(90deg, var(--accent-cyan), transparent); }
+.kpi-card.green::before { background: linear-gradient(90deg, var(--accent-green), transparent); }
+.kpi-card.amber::before { background: linear-gradient(90deg, var(--accent-amber), transparent); }
+
+.kpi-label {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.kpi-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.kpi-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.kpi-sub .pct {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+}
+.kpi-progress {
+  margin-top: 12px;
+  height: 4px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.kpi-progress-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══ ALERTS ═══ */
+.alerts-bar {
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.15);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  margin-top: 20px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  animation: fadeSlideUp 0.5s ease 0.2s both;
+}
+.alert-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: rgba(239,68,68,0.1);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.alert-content { flex: 1; }
+.alert-content h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-red);
+  margin-bottom: 6px;
+}
+.alert-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.alert-tag {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(239,68,68,0.08);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,0.12);
+}
+.alert-tag.warn {
+  background: rgba(245,158,11,0.08);
+  color: #fbbf24;
+  border-color: rgba(245,158,11,0.12);
+}
+
+/* ═══ TWO COLUMN LAYOUT ═══ */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 14px;
+}
+.grid-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 14px;
+}
+
+/* ═══ PANELS ═══ */
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  animation: fadeSlideUp 0.5s ease both;
+}
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.panel-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.panel-badge {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+}
+
+/* ═══ GANTT CHART ═══ */
+.gantt { width: 100%; }
+.gantt-row {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.gantt-row:hover { background: rgba(255,255,255,0.015); }
+.gantt-label {
+  width: 180px;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gantt-track {
+  flex: 1;
+  height: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.gantt-bar {
+  position: absolute;
+  height: 14px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+  font-size: 9px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  transition: filter 0.2s;
+}
+.gantt-bar:hover { filter: brightness(1.25); }
+.gantt-bar.done { background: linear-gradient(90deg, #059669, #10b981); }
+.gantt-bar.wip { background: linear-gradient(90deg, #0891b2, #06b6d4); }
+.gantt-bar.pending { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+.gantt-today {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1.5px;
+  background: var(--accent-red);
+  z-index: 2;
+  opacity: 0.7;
+}
+.gantt-months-row {
+  display: flex;
+  margin-left: 190px;
+  margin-bottom: 6px;
+}
+.gantt-month-label {
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ═══ BAR CHART ═══ */
+.bar-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.bar-chart-label {
+  width: 160px;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-chart-track {
+  flex: 1;
+  height: 18px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+}
+.bar-mdo {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: white;
+  min-width: 0;
+}
+.bar-mat {
+  height: 100%;
+  background: linear-gradient(90deg, #c9a84c, #dab960);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--bg-deep);
+  min-width: 0;
+}
+.bar-chart-value {
+  width: 80px;
+  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+/* ═══ VERTICAL BAR CHART (Monthly) ═══ */
+.vbar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 180px;
+  padding-top: 20px;
+}
+.vbar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+.vbar {
+  width: 100%;
+  border-radius: 3px 3px 0 0;
+  min-height: 2px;
+  position: relative;
+  transition: filter 0.2s;
+  cursor: default;
+}
+.vbar:hover { filter: brightness(1.3); }
+.vbar-planned { background: linear-gradient(180deg, rgba(59,130,246,0.7), rgba(59,130,246,0.3)); }
+.vbar-actual { background: linear-gradient(180deg, var(--accent-gold), rgba(201,168,76,0.4)); }
+.vbar-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+.vbar-val {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.vbar:hover .vbar-val { opacity: 1; }
+
+/* ═══ DONUT CHART (CSS) ═══ */
+.donut-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.donut-wrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+}
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.donut-center-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 20px;
+  font-weight: 600;
+}
+.donut-center-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.donut-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+  flex: 1;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding: 3px 0;
+}
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ═══ DATA TABLE ═══ */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+.data-table td {
+  padding: 9px 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.data-table tr:hover td { color: var(--text-primary); }
+.data-table .mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+}
+.data-table .status {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.data-table .status.ok { background: var(--accent-green); }
+.data-table .status.partial { background: var(--accent-amber); }
+.data-table .status.none { background: var(--accent-red); }
+
+/* ═══ CONTRACTOR GAUGE ═══ */
+.gauge-container {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.gauge {
+  width: 140px; height: 140px;
+  position: relative;
+  flex-shrink: 0;
+}
+.gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.gauge-circle {
+  fill: none;
+  stroke: rgba(255,255,255,0.04);
+  stroke-width: 10;
+}
+.gauge-value {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gauge-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gauge-pct {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 600;
+}
+.gauge-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.gauge-details {
+  flex: 1;
+}
+.gauge-detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-size: 12px;
+}
+.gauge-detail-row .dl { color: var(--text-muted); }
+.gauge-detail-row .dv {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+}
+
+/* ═══ EXPENSE LIST ═══ */
+.expense-month {
+  margin-bottom: 16px;
+}
+.expense-month-header {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.expense-month-header .total {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent-gold);
+}
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+  font-size: 11px;
+}
+.expense-item .desc { color: var(--text-secondary); flex: 1; }
+.expense-item .cat {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+  margin: 0 10px;
+}
+.expense-item .val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1200px) {
+  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+  .grid-2, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .dashboard { padding: 16px; }
+  .project-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .project-meta { flex-wrap: wrap; gap: 16px; }
+  .meta-item { text-align: left; }
+  .topbar { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo-mark">V</div>
+    <div class="topbar-title">VMF Engenharia <span>&mdash; Painel de Controle</span></div>
+  </div>
+  <div class="topbar-right">
+    <span class="topbar-badge">Obra Ativa</span>
+    <div class="topbar-dot"></div>
+    <span>09 Abr 2026</span>
+  </div>
+</div>
+
+<div class="dashboard">
+
+  <!-- PROJECT HEADER -->
+  <div class="project-header">
+    <h1>
+      Obra Boa Vista &mdash; Casa FL
+      <small>THY Engenharia &bull; VMF Construcao e Incorporacao Ltda &bull; Cronograma Casa FL Boa Vista</small>
+    </h1>
+    <div class="project-meta">
+      <div class="meta-item">
+        <div class="label">Area Construida</div>
+        <div class="value">495 m&sup2;</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Inicio</div>
+        <div class="value">Set 2025</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Previsao</div>
+        <div class="value">Mai 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Custo / m&sup2;</div>
+        <div class="value">R$ 8.817</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card gold stagger-1">
+      <div class="kpi-label">Custo Total da Obra</div>
+      <div class="kpi-value" style="color:var(--accent-gold)">R$ 4.364.250</div>
+      <div class="kpi-sub">Orcamento completo</div>
+    </div>
+    <div class="kpi-card blue stagger-2">
+      <div class="kpi-label">Mao de Obra (MDO)</div>
+      <div class="kpi-value" style="color:var(--accent-blue)">R$ 1.691.870</div>
+      <div class="kpi-sub"><span class="pct" style="color:var(--accent-blue)">38,8%</span> do custo total</div>
+      <div class="kpi-progress"><div class="kpi-progress-bar" style="width:38.8%;background:var(--accent-blue)"></div></div>
+    </div>
+    <div class="kpi-card cyan stagger-3">
+      <div class="kpi-label">Material</div>
+      <div class="kpi-value" style="color:var(--accent-cyan)">R$ 2.672.380</div>
+      <div class="kpi-sub"><span class="pct" style="color:var(--accent-cyan)">61,2%</span> do custo total</div>
+      <div class="kpi-progress"><div class="kpi-progress-bar" style="width:61.2%;background:var(--accent-cyan)"></div></div>
+    </div>
+    <div class="kpi-card green stagger-4">
+      <div class="kpi-label">Gasto Real (Executado)</div>
+      <div class="kpi-value" style="color:var(--accent-green)">R$ 592.713</div>
+      <div class="kpi-sub"><span class="pct" style="color:var(--accent-green)">13,6%</span> do orcamento</div>
+      <div class="kpi-progress"><div class="kpi-progress-bar" style="width:13.6%;background:var(--accent-green)"></div></div>
+    </div>
+    <div class="kpi-card amber stagger-5">
+      <div class="kpi-label">Saldo Restante</div>
+      <div class="kpi-value" style="color:var(--accent-amber)">R$ 3.771.537</div>
+      <div class="kpi-sub"><span class="pct" style="color:var(--accent-amber)">86,4%</span> a executar</div>
+      <div class="kpi-progress"><div class="kpi-progress-bar" style="width:86.4%;background:var(--accent-amber)"></div></div>
+    </div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="alerts-bar">
+    <div class="alert-icon">&#9888;</div>
+    <div class="alert-content">
+      <h3>Alertas Criticos &mdash; Atrasos Identificados</h3>
+      <div class="alert-items">
+        <div class="alert-tag warn">Hidraulica 90% &mdash; prazo vencido</div>
+        <div class="alert-tag warn">Eletrica 90% &mdash; prazo vencido</div>
+        <div class="alert-tag">Ar-condicionado 0% &mdash; 4 meses atrasado</div>
+        <div class="alert-tag">Reboco int/ext 0% &mdash; 4 meses atrasado</div>
+        <div class="alert-tag">Acabamentos 0% &mdash; 3 meses atrasado</div>
+        <div class="alert-tag">Gesso 0% &mdash; deveria iniciar mar/26</div>
+        <div class="alert-tag">Pintura 0% &mdash; deveria iniciar mar/26</div>
+        <div class="alert-tag">Apenas 13,6% gasto vs 80%+ tempo decorrido</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRONOGRAMA + FLUXO MENSAL -->
+  <div class="section-title stagger-6">Cronograma da Obra &amp; Projecao Financeira</div>
+  <div class="grid-2-1">
+    <!-- GANTT -->
+    <div class="panel stagger-6">
+      <div class="panel-header">
+        <span class="panel-title">Cronograma de Execucao (Gantt)</span>
+        <span class="panel-badge" style="background:rgba(239,68,68,0.1);color:var(--accent-red)">10 tarefas atrasadas</span>
+      </div>
+      <div class="gantt-months-row" id="ganttMonths"></div>
+      <div class="gantt" id="ganttChart"></div>
+    </div>
+
+    <!-- MONTHLY FINANCIAL -->
+    <div class="panel stagger-7">
+      <div class="panel-header">
+        <span class="panel-title">Orcamento Mensal</span>
+        <span class="panel-badge" style="background:rgba(59,130,246,0.1);color:var(--accent-blue)">12 meses</span>
+      </div>
+      <div style="display:flex;gap:12px;margin-bottom:12px;">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent-blue)"></div>Planejado</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent-gold)"></div>Realizado</div>
+      </div>
+      <div class="vbar-chart" id="monthlyChart"></div>
+    </div>
+  </div>
+
+  <!-- BREAKDOWN + DONUT -->
+  <div class="section-title stagger-7">Composicao de Custos</div>
+  <div class="grid-2">
+    <!-- MDO vs MATERIAL BARS -->
+    <div class="panel stagger-7">
+      <div class="panel-header">
+        <span class="panel-title">MDO vs Material por Categoria</span>
+        <div style="display:flex;gap:12px;">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-blue)"></div>MDO</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent-gold)"></div>Material</div>
+        </div>
+      </div>
+      <div id="mdoMatChart" style="max-height:480px;overflow-y:auto;padding-right:6px;"></div>
+    </div>
+
+    <!-- PLANO DE CONTAS DONUT -->
+    <div class="panel stagger-8">
+      <div class="panel-header">
+        <span class="panel-title">Plano de Contas &mdash; Distribuicao</span>
+        <span class="panel-badge" style="background:rgba(139,92,246,0.1);color:var(--accent-purple)">32 categorias</span>
+      </div>
+      <div class="donut-container" id="donutArea"></div>
+    </div>
+  </div>
+
+  <!-- FLUXO REAL + EMPREITEIRO -->
+  <div class="section-title">Fluxo Financeiro Real &amp; Empreiteiro</div>
+  <div class="grid-2">
+    <!-- REAL EXPENSES -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Lancamentos Financeiros Reais</span>
+        <span class="panel-badge" style="background:rgba(34,197,94,0.1);color:var(--accent-green)">R$ 592.713</span>
+      </div>
+      <div id="expenseList"></div>
+    </div>
+
+    <!-- EMPREITEIRO -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Contrato Empreiteiro</span>
+        <span class="panel-badge" style="background:rgba(6,182,212,0.1);color:var(--accent-cyan)">FJ Empreendimentos</span>
+      </div>
+      <div class="gauge-container" id="gaugeArea"></div>
+    </div>
+  </div>
+
+  <!-- PARCELAMENTOS + TOP EXPENSES -->
+  <div class="section-title">Parcelamentos &amp; Compras</div>
+  <div class="grid-2">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Parcelamentos Ativos</span>
+      </div>
+      <table class="data-table" id="parcelTable"></table>
+    </div>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Top 15 Categorias por Custo</span>
+      </div>
+      <div id="topCatsChart"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  // ═══ DATA ═══
+  const tasks = [
+    {n:"Canteiro de obra",p:100,s:"2025-09-01",e:"2025-09-01"},
+    {n:"Demolicao",p:100,s:"2025-09-01",e:"2025-09-28"},
+    {n:"Alvenaria terreo",p:100,s:"2025-09-29",e:"2025-10-27"},
+    {n:"Alvenaria superior",p:100,s:"2025-09-29",e:"2025-10-27"},
+    {n:"Cobertura",p:100,s:"2025-10-28",e:"2025-11-27"},
+    {n:"Infra. Hidraulica",p:90,s:"2025-10-28",e:"2025-11-27"},
+    {n:"Infra. Eletrica",p:90,s:"2025-10-28",e:"2025-11-27"},
+    {n:"Infra. Ar-condicionado",p:0,s:"2025-11-28",e:"2025-12-27"},
+    {n:"Reboco interno",p:0,s:"2025-11-28",e:"2025-12-27"},
+    {n:"Reboco externo",p:0,s:"2025-11-28",e:"2025-12-27"},
+    {n:"Acab. internos terreo",p:0,s:"2025-12-28",e:"2026-01-27"},
+    {n:"Acab. internos superior",p:0,s:"2026-01-27",e:"2026-02-26"},
+    {n:"Acab. externos",p:0,s:"2026-02-27",e:"2026-03-29"},
+    {n:"Forro de gesso",p:0,s:"2026-03-30",e:"2026-04-29"},
+    {n:"Pintura",p:0,s:"2026-03-30",e:"2026-05-30"},
+    {n:"Interruptores",p:0,s:"2026-05-01",e:"2026-05-31"},
+    {n:"Paisagismo",p:0,s:"2026-05-01",e:"2026-05-31"},
+  ];
+
+  const monthlyPlan = [
+    {m:"Fev",v:274780},{m:"Mar",v:412700},{m:"Abr",v:408400},{m:"Mai",v:357200},
+    {m:"Jun",v:394800},{m:"Jul",v:413000},{m:"Ago",v:446000},{m:"Set",v:451800},
+    {m:"Out",v:348000},{m:"Nov",v:321000},{m:"Dez",v:189000},{m:"Jan",v:178000}
+  ];
+  const monthlyActual = [
+    {m:"Fev",v:186695},{m:"Mar",v:338318},{m:"Abr",v:27632}
+  ];
+
+  const categories = [
+    {n:"Equipe tecnica",mdo:502320,mat:0,t:502320},
+    {n:"Esquadrias aluminio",mdo:100000,mat:400000,t:500000},
+    {n:"Pintura e textura",mdo:90000,mat:150000,t:290000},
+    {n:"Acab. int. terreo",mdo:88000,mat:183000,t:271000},
+    {n:"Marmore/Granito",mdo:50000,mat:220000,t:270000},
+    {n:"Impermeabilizacao",mdo:85000,mat:146000,t:231000},
+    {n:"Estrutura metalica",mdo:84000,mat:146000,t:230000},
+    {n:"Forro de gesso",mdo:48000,mat:110000,t:168000},
+    {n:"Acab. externos",mdo:47000,mat:100000,t:138000},
+    {n:"Ar Condicionado",mdo:40000,mat:70000,t:130000},
+    {n:"Acab. int. superior",mdo:60000,mat:70000,t:130000},
+    {n:"Estrutura concreto",mdo:32000,mat:97000,t:129000},
+    {n:"Inst. eletricas",mdo:39000,mat:74500,t:113500},
+    {n:"Inst. hidraulicas",mdo:37000,mat:68280,t:105280},
+    {n:"Loucas e metais",mdo:26000,mat:76800,t:102800},
+    {n:"Tela mosquiteiro",mdo:15000,mat:100000,t:100000},
+    {n:"Fundacao",mdo:27700,mat:70000,t:97700},
+    {n:"Cobertura",mdo:35200,mat:52800,t:88000},
+    {n:"Reboco interno",mdo:30000,mat:45000,t:75000},
+    {n:"Reboco externo",mdo:30000,mat:45000,t:75000},
+    {n:"Alvenaria terreo",mdo:24500,mat:46000,t:70500},
+    {n:"Alvenaria superior",mdo:24500,mat:46000,t:70500},
+    {n:"Demolicao",mdo:32400,mat:48000,t:70400},
+    {n:"Limpeza/cacamba",mdo:18000,mat:38000,t:56000},
+    {n:"Paisagismo",mdo:20000,mat:30000,t:50000},
+    {n:"Interruptores",mdo:19000,mat:24000,t:43000},
+    {n:"Locacao equip.",mdo:8000,mat:34000,t:42000},
+    {n:"Automacao/fotov.",mdo:16000,mat:24000,t:40000},
+    {n:"Capa termica",mdo:6000,mat:40000,t:40000},
+    {n:"Terraplenagem",mdo:15000,mat:20000,t:35000},
+    {n:"Canteiro de obra",mdo:10000,mat:12000,t:22000},
+    {n:"Troc. calor wifi",mdo:2250,mat:15000,t:15000},
+  ];
+
+  const expenses = [
+    {month:"Fevereiro 2026",total:186695,items:[
+      {d:"Tiao materiais - NF",cat:"Tapume",v:8948},
+      {d:"Empreiteiro FJ - Med. 001 Sinal",cat:"Canteiro",v:169187},
+      {d:"Tiao materiais - NF",cat:"Alvenaria",v:6160},
+      {d:"Tiao materiais - NF",cat:"Fundacao",v:2400},
+    ]},
+    {month:"Marco 2026",total:338318,items:[
+      {d:"JMJ locacao de cacambas",cat:"Cacamba",v:1050},
+      {d:"Terraplenagem - escavacao",cat:"Terraplenagem",v:10000},
+      {d:"Empreiteiro FJ - Med. 002",cat:"Alvenaria",v:157175},
+      {d:"Deposito Tiao - material basico",cat:"Alvenaria",v:9692},
+      {d:"Deposito Tiao - material basico",cat:"Alvenaria",v:4202},
+      {d:"Braza esquadrias - sinal",cat:"Esquadrias",v:60000},
+      {d:"Boing estrutura metalica - sinal",cat:"Estrutura",v:95000},
+      {d:"Solomega - Sondagem",cat:"Fundacao",v:1400},
+      {d:"PortobeloShop Boituva - sinal",cat:"Acabamentos",v:39867},
+    ]},
+    {month:"Abril 2026",total:27632,items:[
+      {d:"Sagrada Familia estacas",cat:"Fundacao",v:3680},
+      {d:"JMJ locacao de cacambas",cat:"Cacamba",v:2100},
+      {d:"Ki Terra terraplenagem",cat:"Terraplenagem",v:6400},
+      {d:"Piso Pedra",cat:"Revestimento",v:11539},
+      {d:"Deposito Tiao - material basico",cat:"Alvenaria",v:3913},
+    ]},
+  ];
+
+  const parcelas = [
+    {d:"30/03/22",desc:"Pisos e revestimentos",forn:"Prime Revestimentos",v:"R$ 14.932",p:"6x cartao",sit:"parcelado"},
+    {d:"06/04/22",desc:"Pisos e revestimentos",forn:"Porto Alpha",v:"R$ 22.364",p:"5x boleto",sit:"parcelado"},
+    {d:"06/04/22",desc:"Pisos e revestimentos",forn:"Telhanorte",v:"R$ 2.593",p:"8x cartao",sit:"parcelado"},
+    {d:"08/04/22",desc:"Pisos e revestimentos",forn:"C&C",v:"R$ 13.757",p:"10x cartao",sit:"parcelado"},
+    {d:"09/04/22",desc:"Pisos e revestimentos",forn:"C&C",v:"R$ 15.965",p:"10x cartao",sit:"parcelado"},
+    {d:"13/04/22",desc:"Pisos e revestimentos",forn:"C&C",v:"R$ 20.955",p:"10x cartao",sit:"parcelado"},
+    {d:"13/04/22",desc:"Pisos e revestimentos",forn:"C&C",v:"R$ 21.614",p:"10x cartao",sit:"parcelado"},
+    {d:"28/09/22",desc:"Marmores e Granitos",forn:"Emporio das Rochas",v:"R$ 142.379",p:"8x cartao",sit:"parcelado"},
+    {d:"19/10/22",desc:"Revestimento ceramico",forn:"Sodimac",v:"R$ 15.362",p:"6x cartao",sit:"parcelado"},
+    {d:"07/11/22",desc:"Inst. Eletricas",forn:"Santil",v:"R$ 14.000",p:"10x cartao",sit:"parcelado"},
+    {d:"21/11/22",desc:"Portas e Forro",forn:"Promade",v:"R$ 34.456",p:"6x cartao",sit:"parcelado"},
+    {d:"27/09/22",desc:"Guarda corpo",forn:"AlphavilleGlass",v:"R$ 39.000",p:"3x",sit:"parcelado"},
+  ];
+
+  // ═══ HELPERS ═══
+  function fmt(n) {
+    return n.toLocaleString('pt-BR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  }
+  function el(tag, cls, txt) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (txt) e.textContent = txt;
+    return e;
+  }
+
+  // ═══ GANTT ═══
+  var pStart = new Date('2025-09-01'), pEnd = new Date('2026-05-31');
+  var totalD = Math.round((pEnd - pStart) / 864e5);
+  var today = new Date(); today.setHours(0,0,0,0);
+
+  // Months row
+  var mRow = document.getElementById('ganttMonths');
+  var mc = new Date(pStart);
+  while (mc <= pEnd) {
+    var ms = new Date(mc.getFullYear(), mc.getMonth(), 1);
+    var me = new Date(mc.getFullYear(), mc.getMonth()+1, 0);
+    var es = ms < pStart ? pStart : ms;
+    var ee = me > pEnd ? pEnd : me;
+    var span = Math.round((ee - es) / 864e5) + 1;
+    var ml = el('div','gantt-month-label');
+    ml.style.width = (span/totalD*100)+'%';
+    ml.textContent = es.toLocaleDateString('pt-BR',{month:'short'}).replace('.','');
+    mRow.appendChild(ml);
+    mc = new Date(mc.getFullYear(), mc.getMonth()+1, 1);
+  }
+
+  var gantt = document.getElementById('ganttChart');
+  // Today line container
+  var todayOff = Math.round((today - pStart) / 864e5);
+
+  tasks.forEach(function(t) {
+    var row = el('div','gantt-row');
+    var lb = el('div','gantt-label', t.n);
+    row.appendChild(lb);
+    var track = el('div','gantt-track');
+    var sd = new Date(t.s+'T00:00:00'), ed = new Date(t.e+'T00:00:00');
+    var sOff = Math.round((sd - pStart) / 864e5);
+    var dur = Math.round((ed - sd) / 864e5) + 1;
+    var left = (sOff / totalD * 100);
+    var w = (dur / totalD * 100);
+    var bar = el('div','gantt-bar');
+    bar.className = 'gantt-bar ' + (t.p===100?'done':t.p>0?'wip':'pending');
+    bar.style.left = left+'%';
+    bar.style.width = w+'%';
+    bar.textContent = t.p > 0 ? t.p+'%' : '';
+    bar.title = t.n+': '+t.p+'%';
+    track.appendChild(bar);
+    // Today line inside each track
+    if (todayOff >= 0 && todayOff <= totalD) {
+      var tl = el('div','gantt-today');
+      tl.style.left = (todayOff/totalD*100)+'%';
+      track.appendChild(tl);
+    }
+    row.appendChild(track);
+    gantt.appendChild(row);
+  });
+
+  // ═══ MONTHLY CHART ═══
+  var maxM = Math.max.apply(null, monthlyPlan.map(function(m){return m.v;}));
+  var mc2 = document.getElementById('monthlyChart');
+  var actMap = {};
+  monthlyActual.forEach(function(a){ actMap[a.m] = a.v; });
+
+  monthlyPlan.forEach(function(m) {
+    var col = el('div','vbar-col');
+    var hPlan = (m.v / maxM * 150);
+    var actual = actMap[m.m] || 0;
+    var hAct = actual > 0 ? (actual / maxM * 150) : 0;
+
+    if (hAct > 0) {
+      var ba = el('div','vbar vbar-actual');
+      ba.style.height = hAct + 'px';
+      var va = el('div','vbar-val');
+      va.textContent = fmt(actual);
+      ba.appendChild(va);
+      col.appendChild(ba);
+    }
+
+    var bp = el('div','vbar vbar-planned');
+    bp.style.height = hPlan + 'px';
+    var vp = el('div','vbar-val');
+    vp.textContent = fmt(m.v);
+    bp.appendChild(vp);
+    col.appendChild(bp);
+
+    var lb2 = el('div','vbar-label',m.m);
+    col.appendChild(lb2);
+    mc2.appendChild(col);
+  });
+
+  // ═══ MDO vs MATERIAL BARS ═══
+  var mdoChart = document.getElementById('mdoMatChart');
+  var maxCat = categories[0].t;
+  categories.forEach(function(c) {
+    var row = el('div','bar-chart-row');
+    var lb3 = el('div','bar-chart-label',c.n);
+    row.appendChild(lb3);
+    var track2 = el('div','bar-chart-track');
+    var wTotal = (c.t / maxCat * 100);
+    if (c.mdo > 0) {
+      var bm = el('div','bar-mdo');
+      bm.style.width = (c.mdo / maxCat * 100) + '%';
+      if (c.mdo / maxCat * 100 > 5) bm.textContent = fmt(c.mdo);
+      track2.appendChild(bm);
+    }
+    if (c.mat > 0) {
+      var bmm = el('div','bar-mat');
+      bmm.style.width = (c.mat / maxCat * 100) + '%';
+      if (c.mat / maxCat * 100 > 5) bmm.textContent = fmt(c.mat);
+      track2.appendChild(bmm);
+    }
+    row.appendChild(track2);
+    var val = el('div','bar-chart-value','R$ '+fmt(c.t));
+    row.appendChild(val);
+    mdoChart.appendChild(row);
+  });
+
+  // ═══ DONUT CHART ═══
+  var donutArea = document.getElementById('donutArea');
+  var donutColors = [
+    '#c9a84c','#3b82f6','#06b6d4','#22c55e','#8b5cf6','#ef4444','#f59e0b','#ec4899',
+    '#10b981','#6366f1','#14b8a6','#f97316','#a855f7','#0ea5e9','#84cc16','#e11d48'
+  ];
+  var topForDonut = categories.slice(0, 16);
+  var otherTotal = 0;
+  categories.slice(16).forEach(function(c){ otherTotal += c.t; });
+  var total4 = 4364250;
+
+  var wrapper = el('div','donut-wrapper');
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('viewBox', '0 0 200 200');
+  var r = 80, cx = 100, cy = 100, circ = 2 * Math.PI * r;
+  var offset = 0;
+
+  // Background circle
+  var bgC = document.createElementNS(svgNS, 'circle');
+  bgC.setAttribute('cx', cx); bgC.setAttribute('cy', cy); bgC.setAttribute('r', r);
+  bgC.setAttribute('fill', 'none'); bgC.setAttribute('stroke', 'rgba(255,255,255,0.03)');
+  bgC.setAttribute('stroke-width', '24');
+  svg.appendChild(bgC);
+
+  var allSlices = topForDonut.map(function(c,i){
+    return {name:c.n, pct: c.t/total4, color: donutColors[i%donutColors.length]};
+  });
+  allSlices.push({name:'Outros', pct: otherTotal/total4, color: '#475569'});
+
+  allSlices.forEach(function(s) {
+    var c2 = document.createElementNS(svgNS, 'circle');
+    c2.setAttribute('cx', cx); c2.setAttribute('cy', cy); c2.setAttribute('r', r);
+    c2.setAttribute('fill', 'none');
+    c2.setAttribute('stroke', s.color);
+    c2.setAttribute('stroke-width', '22');
+    c2.setAttribute('stroke-dasharray', (s.pct * circ) + ' ' + circ);
+    c2.setAttribute('stroke-dashoffset', -offset + '');
+    c2.setAttribute('style', 'transform:rotate(-90deg);transform-origin:center;');
+    svg.appendChild(c2);
+    offset += s.pct * circ;
+  });
+
+  wrapper.appendChild(svg);
+  var center = el('div','donut-center');
+  var cval = el('div','donut-center-val','32');
+  cval.style.color = 'var(--accent-gold)';
+  center.appendChild(cval);
+  var clbl = el('div','donut-center-label','categorias');
+  center.appendChild(clbl);
+  wrapper.appendChild(center);
+  donutArea.appendChild(wrapper);
+
+  var legend = el('div','donut-legend');
+  allSlices.forEach(function(s) {
+    var li = el('div','legend-item');
+    var dot = el('div','legend-dot');
+    dot.style.background = s.color;
+    li.appendChild(dot);
+    li.appendChild(document.createTextNode(s.name + ' (' + (s.pct*100).toFixed(1) + '%)'));
+    legend.appendChild(li);
+  });
+  donutArea.appendChild(legend);
+
+  // ═══ EXPENSES ═══
+  var expList = document.getElementById('expenseList');
+  expenses.forEach(function(em) {
+    var monthDiv = el('div','expense-month');
+    var hdr = el('div','expense-month-header');
+    var hdrLeft = el('span','',em.month);
+    hdr.appendChild(hdrLeft);
+    var hdrRight = el('span','total','R$ '+fmt(em.total));
+    hdr.appendChild(hdrRight);
+    monthDiv.appendChild(hdr);
+    em.items.forEach(function(it) {
+      var item = el('div','expense-item');
+      var desc = el('span','desc',it.d);
+      item.appendChild(desc);
+      var cat = el('span','cat',it.cat);
+      item.appendChild(cat);
+      var val2 = el('span','val','R$ '+fmt(it.v));
+      item.appendChild(val2);
+      monthDiv.appendChild(item);
+    });
+    expList.appendChild(monthDiv);
+  });
+
+  // ═══ GAUGE (Empreiteiro) ═══
+  var gaugeArea = document.getElementById('gaugeArea');
+  var gDiv = el('div','gauge');
+  var gSvg = document.createElementNS(svgNS, 'svg');
+  gSvg.setAttribute('viewBox', '0 0 200 200');
+  var gr = 75, gcirc = 2*Math.PI*gr;
+  var gc1 = document.createElementNS(svgNS, 'circle');
+  gc1.setAttribute('cx','100'); gc1.setAttribute('cy','100'); gc1.setAttribute('r',gr);
+  gc1.setAttribute('class','gauge-circle');
+  gSvg.appendChild(gc1);
+  var gc2 = document.createElementNS(svgNS, 'circle');
+  gc2.setAttribute('cx','100'); gc2.setAttribute('cy','100'); gc2.setAttribute('r',gr);
+  gc2.setAttribute('class','gauge-value');
+  gc2.setAttribute('stroke', 'var(--accent-cyan)');
+  // Empreiteiro paid: 169187 + 157175 = 326362 of 610000 = 53.5%
+  var empPct = 326362 / 610000;
+  gc2.setAttribute('stroke-dasharray', gcirc+'');
+  gc2.setAttribute('stroke-dashoffset', (gcirc * (1 - empPct))+'');
+  gSvg.appendChild(gc2);
+  gDiv.appendChild(gSvg);
+  var gText = el('div','gauge-text');
+  var gPct = el('div','gauge-pct', Math.round(empPct*100)+'%');
+  gPct.style.color = 'var(--accent-cyan)';
+  gText.appendChild(gPct);
+  var gLbl = el('div','gauge-label','pago');
+  gText.appendChild(gLbl);
+  gDiv.appendChild(gText);
+  gaugeArea.appendChild(gDiv);
+
+  var gDetails = el('div','gauge-details');
+  var dRows = [
+    ['Contrato total','R$ 610.000'],
+    ['Area','495 m\u00B2'],
+    ['Custo/m\u00B2 (MDO)','R$ 1.232'],
+    ['Med. 001 (Sinal)','R$ 169.187'],
+    ['Med. 002 (Alvenaria)','R$ 157.175'],
+    ['Total pago','R$ 326.362'],
+    ['Saldo restante','R$ 283.638'],
+  ];
+  dRows.forEach(function(dr) {
+    var r2 = el('div','gauge-detail-row');
+    var dl = el('span','dl',dr[0]);
+    r2.appendChild(dl);
+    var dv = el('span','dv',dr[1]);
+    r2.appendChild(dv);
+    gDetails.appendChild(r2);
+  });
+  gaugeArea.appendChild(gDetails);
+
+  // ═══ PARCELAS TABLE ═══
+  var pt = document.getElementById('parcelTable');
+  var thead = el('thead');
+  var trh = el('tr');
+  ['Data','Descricao','Fornecedor','Valor','Parcelas'].forEach(function(h){
+    trh.appendChild(el('th','',h));
+  });
+  thead.appendChild(trh);
+  pt.appendChild(thead);
+  var tbody = el('tbody');
+  parcelas.forEach(function(p) {
+    var tr2 = el('tr');
+    var td1 = el('td','mono',p.d);
+    tr2.appendChild(td1);
+    tr2.appendChild(el('td','',p.desc));
+    tr2.appendChild(el('td','',p.forn));
+    var td4 = el('td','mono',p.v);
+    tr2.appendChild(td4);
+    tr2.appendChild(el('td','',p.p));
+    tbody.appendChild(tr2);
+  });
+  pt.appendChild(tbody);
+
+  // ═══ TOP 15 CATEGORIES ═══
+  var topChart = document.getElementById('topCatsChart');
+  categories.slice(0,15).forEach(function(c) {
+    var row = el('div','bar-chart-row');
+    var lb4 = el('div','bar-chart-label',c.n);
+    row.appendChild(lb4);
+    var track3 = el('div','bar-chart-track');
+    var bar2 = el('div');
+    bar2.style.cssText = 'height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent-gold),rgba(201,168,76,0.4));width:'+(c.t/502320*100)+'%;display:flex;align-items:center;padding-left:6px;font-size:9px;font-family:IBM Plex Mono,monospace;color:var(--bg-deep);font-weight:600;';
+    if (c.t/502320*100 > 12) bar2.textContent = 'R$ '+fmt(c.t);
+    track3.appendChild(bar2);
+    row.appendChild(track3);
+    var val3 = el('div','bar-chart-value','R$ '+fmt(c.t));
+    row.appendChild(val3);
+    topChart.appendChild(row);
+  });
+
+})();
+</script>
+</body>
+</html>

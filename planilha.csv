@@ -1,0 +1,51 @@
+"Crie um cronograma de projeto nesta planilha.
+Digite o título desse projeto na célula B1. 
+As informações sobre como usar esta planilha, incluindo instruções para leitores de tela e o autor desta pasta de trabalho, estão na planilha Sobre.
+Continue navegando pela coluna A para saber mais.",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Insira o Nome da empresa na célula B2.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Insira o nome do Líder do projeto na célula B3. Insira a data de Início do projeto na célula E3. Início do projeto: o rótulo está na célula C3.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"A semana de exibição na célula E4 representa a semana inicial a ser exibida no cronograma do projeto na célula I4. A data de início do projeto é considerada Semana 1. Para alterar a semana de exibição, basta inserir um novo número da semana na célula E4.
+A data inicial para cada semana, começando com a semana de exibição na célula E4, começa na célula I4 e é calculada automaticamente. Há 8 semanas representadas nesse modo de exibição que vão da célula I4 a célula BF4.
+Você não deve modificar essas células.
+Semana de exibição: o rótulo está na célula C4.",,,Início do projeto:,,,,, 1 de set. de 2025,,,,,,, 1 de out. de 2025,,,,,,, 1 de nov. de 2025,,,,,,, 1 de dez. de 2025,,,,,,, 1 de jan. de 2026,,,,,,, 1 de fev. de 2026,,,,,,, 1 de mar. de 2026,,,,,,, 1 de abr. de 2026,,,,,,
+"As células I5 a BL5 contêm o número de dias da semana representado no bloco de células acima de cada célula de data e são calculadas automaticamente.
+Você não deve modificar essas células.
+A data de hoje é contornada em vermelho (hex #AD3815) a partir da data de hoje na linha 5, passando pela coluna de data inteira até o final do cronograma do projeto.",,,Semana de exibição:,0,,,, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+"Esta linha inclui cabeçalhos do cronograma do projeto que estão abaixo deles. 
+Navegue de B6 a BL6 para ouvir o conteúdo. A primeira letra de cada dia da semana da data acima daquele cabeçalho começa na célula I6 e continua até a célula BL6.
+Todo o gráfico de linha do tempo de projeto é gerado automaticamente com base nas datas de início e término inseridas, usando os formatos condicionais.
+Não modifique o conteúdo nas células dentro das colunas após a coluna I, começando na célula I7.",TAREFA,RESPONSÁVEL,PROGRESSO,INÍCIO,TÉRMINO,,DIAS,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d,s,t,q,q,s,s,d
+Não exclua esta linha. Esta linha ficará oculta para preservar uma fórmula usada para realçar o dia atual no cronograma do projeto. ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"A célula B8 contém o título do exemplo da Fase 1. 
+Insira um novo Título na célula B8.
+Na célula C8, insira o nome a atribuir à fase, caso ela se aplique ao seu projeto.
+Na célula D8, insira o Progresso para a fase inteira, caso ela se aplique ao seu projeto.
+Nas células E8 e F8, insira as datas de início e término para a fase inteira, caso ela se aplique ao seu projeto. 
+O gráfico de Gantt preenche automaticamente as datas apropriadas e sombreia de acordo com o andamento inserido.
+Para excluir a fase e trabalhar apenas nas tarefas, basta excluir essa linha.",SERVIÇOS PRELIMINARES,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"A célula B9 contém a tarefa de exemplo ""Tarefa 1"". 
+Insira um novo nome da tarefa na célula B9.
+Insira uma pessoa para atribuir a tarefa na célula C9.
+Insira o andamento da tarefa na célula D9. Uma barra de progresso é exibida na célula e fica sombreada de acordo com o número na célula. Por exemplo, 50% de progresso sombreia metade da célula.
+Insira a data de início da tarefa na célula E9.
+Insira a data de término da tarefa na célula F9.
+Uma barra de status sombreada das datas inseridas aparece em blocos começando na célula I9 até BL9. ",1. Canteiro de obra,THY Engenharia,100%,9/1/2025,9/1/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"As linhas 10 a 13 repetem o padrão da linha 9. 
+Repita as instruções da célula A9 para todas as linhas de tarefas nesta planilha. Substitua os dados de exemplo.
+Um exemplo de outra fase começa na célula A14. 
+Continue inserindo tarefas nas células A10 a A13 ou vá para a célula A14 para saber mais.",2. Demolicao ,THY Engenharia,100%,9/1/2025,9/28/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,3. Alvenaria terreo,THY Engenharia,100%,9/29/2025,10/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,4. Alvenaria superior,THY Engenharia,100%,9/29/2025,10/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,5. Cobertura,THY Engenharia,100%,10/28/2025,11/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,6. Infraestrutura de Hidraulica ,THY Engenharia,90%,10/28/2025,11/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,7. Infraestrutura  de eletrica ,THY Engenharia,90%,10/28/2025,11/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,8. Infraestrutura de ar-condicionado,THY Engenharia,0%,11/28/2025,12/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,9. Reboco interno ,THY Engenharia,0%,11/28/2025,12/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,10. Reboco externo ,THY Engenharia,0%,11/28/2025,12/27/2025,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,11. Acabamentos internos terreo,THY Engenharia,0%,12/28/2025,1/27/2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,12. Acabamentos internos superior,THY Engenharia,0%,1/27/2026,2/26/2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,13. Acabamentos externos,THY Engenharia,0%,2/27/2026,3/29/2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,14. Forro de gesso,THY Engenharia,0%,3/30/2026,4/29/2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,15. Pintura,THY Engenharia,0%,3/30/2026,5/30/2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,16. Interruptores,THY Engenharia,0%,5/1/2026,5/31/2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,17. Paisagismo,THY Engenharia,0%,5/1/2026,5/31/2026,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,24 @@
+Data,Descrição,Numero p/,Qnt. p/ pagas,Valor p/ mes,Valor,Fornecedor,Documento,N. Doc.,Nome/arquivo,OBS,Situação
+2022-03-30 00:00:00,Pisos e revestimentos,6,6,2488.67,"R$ 14.932,02 ",Prime Revestimentos,Pedido,20345,Prime Revestimentos 30.03.22,faturado,parcelado 6x cartão
+2022-04-06 00:00:00,Pisos e revestimentos,1,1,1188.3,"R$ 1.188,30 ",Porto Alpha - Pasinato,NF,34330,Porto Alpha - Pasinato NF 34330 - 06.04.22,a vista,pago-06.04.22
+2022-04-06 00:00:00,Pisos e revestimentos,5,5,4472.76,"R$ 22.363,81 ",Porto Alpha ,pedido,11313,Porto Alpha pedido 11313 - 06.04.22,faturado,parcelado 5x boleto
+2022-04-06 00:00:00,Pisos e revestimentos,8,8,324.16,"R$ 2.593,30 ",Telhanorte Saint Gobain,NF,5527831,Telhanorte NF 5527831 - 06.04.22,faturado,parcelado 8x cartão
+2022-04-08 00:00:00,Pisos e revestimentos,10,10,1375.71,"R$ 13.757,07 ",C&C Casa e Construção,NF,2993737,C&C NF 2993737 - 08.04.22,faturado,parcelado 10x cartão
+2022-04-09 00:00:00,Pisos e revestimentos,10,10,1596.51,"R$ 15.965,12 ",C&C Casa e Construção,NF,2995262,C&C NF 2995262 - 09.04.22,faturado,parcelado 10x cartão
+2022-04-09 00:00:00,Pisos e revestimentos,10,10,447.3,"R$ 4.473,01 ",Telhanorte Saint Gobain,NF,5531557,Telhanorte NF 5531557 - 09.04.22,faturado,parcelado 10x cartão
+2022-04-11 00:00:00,Pisos e revestimentos,10,10,1596.51,"R$ 15.965,12 ",C&C Casa e Construção,NF,2995821,C&C NF 2995821 - 11.04.22,faturado,parcelado 10x cartão
+2022-04-13 00:00:00,Pisos e revestimentos,10,10,2095.53,"R$ 20.955,27 ",C&C Casa e Construção,NF,2998235,C&C NF 2998235 - 13.04.22,faturado,parcelado 10x cartão
+2022-04-13 00:00:00,Pisos e revestimentos,10,10,2161.45,"R$ 21.614,49 ",C&C Casa e Construção,NF,2998236,C&C NF 2998236 - 13.04.22,faturado,parcelado 10x cartão
+2022-09-27 00:00:00,Guarda corpo,3,3,13000,39000,AlphavilleGlass,NF,1142,Alphaville Glass,Faturado,parcalado 3x 
+2022-09-29 00:00:00,Pedra decorativas,1,1,3000,3000,Emporio das rochas,NF,11288,Emporio das rochas ,a vista,pago-28.09.22
+2022-10-28 00:00:00,Pedra decorativas,7,7,17797.43,124582.01000000001,Emporio das rochas,NF,11288,Emporio das rochas ,faturado,parcelado 7x
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
