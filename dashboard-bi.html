@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BI Dashboard — Obra Boa Vista Casa FL</title>
-<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg-deep: #06080f;
@@ -33,7 +33,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Outfit', sans-serif;
   background: var(--bg-deep);
   color: var(--text-primary);
   min-height: 100vh;
@@ -79,13 +79,13 @@ body::before {
   background: linear-gradient(135deg, var(--accent-gold), #a07c2e);
   border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 16px;
   color: var(--bg-deep);
 }
 .topbar-title {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.8px;
@@ -104,7 +104,7 @@ body::before {
   color: var(--accent-gold);
   padding: 4px 12px;
   border-radius: 20px;
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 1.5px;
@@ -139,7 +139,7 @@ body::before {
   animation: fadeIn 0.6s ease;
 }
 .project-header h1 {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 28px;
   font-weight: 600;
   letter-spacing: -0.5px;
@@ -178,7 +178,7 @@ body::before {
 
 /* ═══ SECTION TITLES ═══ */
 .section-title {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -231,7 +231,7 @@ body::before {
 .kpi-card.amber::before { background: linear-gradient(90deg, var(--accent-amber), transparent); }
 
 .kpi-label {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -347,7 +347,7 @@ body::before {
   margin-bottom: 18px;
 }
 .panel-title {
-  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -731,6 +731,65 @@ body::before {
 .stagger-7 { animation-delay: 0.35s; }
 .stagger-8 { animation-delay: 0.4s; }
 
+/* ═══ ANALYSIS ═══ */
+.analysis-panel .analysis-text { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+.analysis-panel .analysis-text p { margin-bottom: 10px; }
+.analysis-panel .analysis-text strong { color: var(--text-primary); }
+.analysis-bars { margin-bottom: 16px; }
+.analysis-bar-row { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+.analysis-bar-label { width:140px; font-size:12px; color:var(--text-secondary); flex-shrink:0; }
+.analysis-bar-track { flex:1; height:20px; background:rgba(255,255,255,0.03); border-radius:4px; overflow:hidden; }
+.analysis-bar-fill { height:100%; border-radius:4px; transition:width 1.5s cubic-bezier(0.16,1,0.3,1); }
+.analysis-bar-pct { width:50px; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; text-align:right; }
+.analysis-highlight {
+  padding: 12px 16px; border-radius: 6px; font-size: 12px; margin-top: 10px;
+  border-left: 3px solid;
+}
+.analysis-highlight.warn { background:rgba(245,158,11,0.06); border-color:var(--accent-amber); color:#fbbf24; }
+.analysis-highlight.danger { background:rgba(239,68,68,0.06); border-color:var(--accent-red); color:#f87171; }
+.analysis-flow { display:flex; gap:12px; margin-bottom:10px; }
+.flow-item {
+  flex:1; background:rgba(255,255,255,0.02); border:1px solid var(--border);
+  border-radius:6px; padding:10px; display:flex; flex-direction:column; align-items:center; gap:4px;
+}
+.flow-month { font-family:'Space Grotesk',sans-serif; font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; }
+.flow-val { font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:600; color:var(--text-primary); }
+.flow-pct { font-size:10px; padding:2px 8px; border-radius:3px; }
+.flow-pct.ok { background:rgba(34,197,94,0.1); color:var(--accent-green); }
+.flow-pct.bad { background:rgba(239,68,68,0.1); color:var(--accent-red); }
+.action-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.action-col { }
+.action-header {
+  font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:600;
+  text-transform:uppercase; letter-spacing:1px; padding:8px 12px;
+  border-radius:6px; margin-bottom:10px; text-align:center;
+}
+.action-header.urgent { background:rgba(239,68,68,0.08); color:#f87171; }
+.action-header.short { background:rgba(245,158,11,0.08); color:#fbbf24; }
+.action-header.ongoing { background:rgba(34,197,94,0.08); color:#4ade80; }
+.action-item {
+  font-size:12px; color:var(--text-secondary); padding:8px 12px;
+  border-left:2px solid var(--border); margin-bottom:6px; line-height:1.5;
+}
+.cost-table { }
+.cost-row {
+  display:flex; justify-content:space-between; padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.03); font-size:13px;
+}
+.cost-row .cost-label { color:var(--text-secondary); }
+.cost-row .cost-val { font-family:'IBM Plex Mono',monospace; font-weight:500; color:var(--text-primary); }
+.cost-row.total { border-top:1px solid var(--border-light); border-bottom:none; padding-top:14px; margin-top:4px; }
+.cost-row.total .cost-label { color:var(--text-primary); font-weight:600; }
+.btn-download {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:13px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+  background:linear-gradient(135deg,var(--accent-gold),#a07c2e);
+  color:var(--bg-deep); border:none; padding:14px 40px;
+  border-radius:8px; cursor:pointer; transition:all 0.2s;
+}
+.btn-download:hover { filter:brightness(1.15); transform:translateY(-1px); box-shadow:0 4px 20px rgba(201,168,76,0.3); }
+.btn-download:active { transform:translateY(0); }
+
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 1200px) {
   .kpi-grid { grid-template-columns: repeat(3, 1fr); }
@@ -929,6 +988,140 @@ body::before {
       </div>
       <div id="topCatsChart"></div>
     </div>
+  </div>
+
+  <!-- ═══ ANALISE ESTRATEGICA ═══ -->
+  <div class="section-title">Analise Estrategica &amp; Insights</div>
+
+  <!-- Descompasso -->
+  <div class="panel analysis-panel" style="margin-bottom:14px;">
+    <div class="panel-header">
+      <span class="panel-title">1. Descompasso Critico: Tempo vs Execucao vs Orcamento</span>
+      <span class="panel-badge" style="background:rgba(239,68,68,0.1);color:var(--accent-red)">RISCO ALTO</span>
+    </div>
+    <div class="analysis-bars">
+      <div class="analysis-bar-row">
+        <span class="analysis-bar-label">Tempo decorrido</span>
+        <div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:80%;background:var(--accent-red)"></div></div>
+        <span class="analysis-bar-pct" style="color:var(--accent-red)">~80%</span>
+      </div>
+      <div class="analysis-bar-row">
+        <span class="analysis-bar-label">Progresso fisico</span>
+        <div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:40%;background:var(--accent-amber)"></div></div>
+        <span class="analysis-bar-pct" style="color:var(--accent-amber)">~40%</span>
+      </div>
+      <div class="analysis-bar-row">
+        <span class="analysis-bar-label">Orcamento gasto</span>
+        <div class="analysis-bar-track"><div class="analysis-bar-fill" style="width:13.6%;background:var(--accent-green)"></div></div>
+        <span class="analysis-bar-pct" style="color:var(--accent-green)">13,6%</span>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p>Com apenas <strong>52 dias</strong> ate a previsao de entrega (31/05/2026), existem <strong>10 tarefas com 0%</strong> e 2 tarefas travadas em 90%. Projecao realista de conclusao: <strong style="color:var(--accent-red)">Q4 2026 (Out-Dez)</strong>.</p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Lancamentos incompletos -->
+    <div class="panel analysis-panel">
+      <div class="panel-header">
+        <span class="panel-title">2. Lancamentos Financeiros Incompletos</span>
+        <span class="panel-badge" style="background:rgba(245,158,11,0.1);color:var(--accent-amber)">ATENCAO</span>
+      </div>
+      <div class="analysis-text">
+        <p>Tarefas 1 a 7 foram executadas entre <strong>Set-Nov/2025</strong>, mas o primeiro lancamento financeiro e de <strong>Fev/2026</strong>. Faltam 3-4 meses de registros.</p>
+        <div class="analysis-highlight warn">O indicador de 13,6% gasto pode nao refletir a realidade. Auditar pagamentos de Set/2025 a Jan/2026.</div>
+      </div>
+    </div>
+
+    <!-- Fluxo de caixa -->
+    <div class="panel analysis-panel">
+      <div class="panel-header">
+        <span class="panel-title">3. Fluxo de Caixa em Queda</span>
+        <span class="panel-badge" style="background:rgba(239,68,68,0.1);color:var(--accent-red)">CRITICO</span>
+      </div>
+      <div class="analysis-text">
+        <div class="analysis-flow">
+          <div class="flow-item"><span class="flow-month">Fev</span><span class="flow-val">R$ 186k</span><span class="flow-pct ok">68% do plan.</span></div>
+          <div class="flow-item"><span class="flow-month">Mar</span><span class="flow-val">R$ 338k</span><span class="flow-pct ok">82% do plan.</span></div>
+          <div class="flow-item"><span class="flow-month">Abr</span><span class="flow-val">R$ 27k</span><span class="flow-pct bad">6,7% do plan.</span></div>
+        </div>
+        <div class="analysis-highlight danger">Abr/26 caiu para R$27k quando deveria ser R$408k. Indica obra parada ou fornecedores sem receber.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:14px;">
+    <!-- Empreiteiro -->
+    <div class="panel analysis-panel">
+      <div class="panel-header">
+        <span class="panel-title">4. Empreiteiro: Pagamento vs Entrega</span>
+      </div>
+      <div class="analysis-text">
+        <p>Empreiteiro FJ recebeu <strong>53% do contrato</strong> (R$326k de R$610k) mas completou apenas <strong>~30%</strong> dos 22 servicos contratados. 18 de 22 itens com medicao zerada.</p>
+        <div class="analysis-highlight warn">Vincular proxima medicao a comprovacao fisica. Nao liberar pagamento sem entregaveis medidos.</div>
+      </div>
+    </div>
+
+    <!-- Materiais pre-comprados -->
+    <div class="panel analysis-panel">
+      <div class="panel-header">
+        <span class="panel-title">5. Materiais Pre-comprados (2022)</span>
+      </div>
+      <div class="analysis-text">
+        <p>~R$320k em materiais comprados em <strong>2022</strong> (pisos, marmores, guarda-corpo, portas). Armazenados ha <strong>4 anos</strong> antes do uso.</p>
+        <div class="analysis-highlight warn">Verificar condicoes, garantias e compatibilidade. Risco de dano por armazenamento prolongado.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plano de acao -->
+  <div class="panel analysis-panel" style="margin-top:14px;">
+    <div class="panel-header">
+      <span class="panel-title">6. Plano de Acao Recomendado</span>
+      <span class="panel-badge" style="background:rgba(34,197,94,0.1);color:var(--accent-green)">ACOES</span>
+    </div>
+    <div class="action-grid">
+      <div class="action-col">
+        <div class="action-header urgent">Imediato (esta semana)</div>
+        <div class="action-item">Auditar lancamentos financeiros Set/2025 a Jan/2026</div>
+        <div class="action-item">Medir fisicamente hidraulica e eletrica (confirmar 90%)</div>
+        <div class="action-item">Reuniao com empreiteiro FJ &mdash; alinhar cronograma real</div>
+      </div>
+      <div class="action-col">
+        <div class="action-header short">Curto prazo (30 dias)</div>
+        <div class="action-item">Replanejamento do cronograma com datas realistas</div>
+        <div class="action-item">Verificar estado dos materiais pre-comprados (2022)</div>
+        <div class="action-item">Cotar ar-condicionado, reboco e acabamentos</div>
+        <div class="action-item">Negociar saldo esquadrias (R$440k) com desconto</div>
+      </div>
+      <div class="action-col">
+        <div class="action-header ongoing">Gestao continua</div>
+        <div class="action-item">Lancar pagamentos no dia da execucao</div>
+        <div class="action-item">Atualizar progresso semanalmente</div>
+        <div class="action-item">Controlar equipe tecnica (R$42k/mes de atraso)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custo do atraso -->
+  <div class="panel analysis-panel" style="margin-top:14px;">
+    <div class="panel-header">
+      <span class="panel-title">7. Custo Estimado do Atraso</span>
+    </div>
+    <div class="analysis-text">
+      <div class="cost-table">
+        <div class="cost-row"><span class="cost-label">Equipe tecnica (fixo mensal)</span><span class="cost-val">R$ 42.000/mes</span></div>
+        <div class="cost-row"><span class="cost-label">Meses de atraso estimados</span><span class="cost-val">4 a 6 meses</span></div>
+        <div class="cost-row"><span class="cost-label">Inflacao materiais (~1,5%/mes)</span><span class="cost-val">R$ 40.000/mes</span></div>
+        <div class="cost-row total"><span class="cost-label">Custo adicional estimado por atraso</span><span class="cost-val" style="color:var(--accent-red)">R$ 328k a R$ 492k</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTAO DOWNLOAD -->
+  <div style="text-align:center;margin-top:36px;margin-bottom:24px;">
+    <button id="btnDownload" class="btn-download" onclick="gerarRelatorio()">Baixar Relatorio para Cliente</button>
   </div>
 
 </div>
@@ -1342,6 +1535,160 @@ body::before {
   });
 
 })();
+
+// ═══ GERAR RELATORIO PARA CLIENTE ═══
+function gerarRelatorio() {
+  var hoje = new Date().toLocaleDateString('pt-BR');
+  var doc = [
+    '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">',
+    '<title>Relatorio Obra Boa Vista - '+hoje+'</title>',
+    '<style>',
+    '@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");',
+    '*{margin:0;padding:0;box-sizing:border-box}',
+    'body{font-family:Outfit,sans-serif;color:#1a1a2e;padding:40px 56px;max-width:900px;margin:0 auto;font-size:13px;line-height:1.6}',
+    'h1{font-family:Space Grotesk,sans-serif;font-size:22px;font-weight:700;color:#0f172a;border-bottom:3px solid #c9a84c;padding-bottom:10px;margin-bottom:6px}',
+    '.sub{font-size:12px;color:#64748b;margin-bottom:28px}',
+    'h2{font-family:Space Grotesk,sans-serif;font-size:14px;font-weight:600;color:#0f172a;text-transform:uppercase;letter-spacing:1px;margin:28px 0 12px;padding:8px 0;border-bottom:1px solid #e2e8f0}',
+    'table{width:100%;border-collapse:collapse;margin:10px 0 20px;font-size:12px}',
+    'th{background:#f1f5f9;padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:#475569;border-bottom:2px solid #cbd5e1}',
+    'td{padding:7px 10px;border-bottom:1px solid #f1f5f9}',
+    'tr:hover td{background:#f8fafc}',
+    '.mono{font-family:IBM Plex Mono,monospace}',
+    '.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 24px}',
+    '.kpi{border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px;text-align:center}',
+    '.kpi .lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:#64748b;margin-bottom:6px}',
+    '.kpi .val{font-family:IBM Plex Mono,monospace;font-size:20px;font-weight:600;color:#0f172a}',
+    '.kpi .pct{font-size:11px;color:#64748b;margin-top:4px}',
+    '.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}',
+    '.bar-label{width:130px;font-size:11px;color:#475569;text-align:right;flex-shrink:0}',
+    '.bar-track{flex:1;height:14px;background:#f1f5f9;border-radius:3px;overflow:hidden}',
+    '.bar-fill{height:100%;border-radius:3px}',
+    '.bar-val{width:70px;font-size:10px;font-family:IBM Plex Mono,monospace;color:#475569}',
+    '.alert{padding:10px 14px;border-radius:6px;font-size:11px;margin:6px 0;border-left:3px solid}',
+    '.alert.red{background:#fef2f2;border-color:#ef4444;color:#b91c1c}',
+    '.alert.yellow{background:#fffbeb;border-color:#f59e0b;color:#92400e}',
+    '.footer{margin-top:40px;padding-top:16px;border-top:1px solid #e2e8f0;font-size:10px;color:#94a3b8;text-align:center}',
+    '.action-box{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}',
+    '.action-col-r h4{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;padding:6px 10px;border-radius:4px;margin-bottom:8px;text-align:center}',
+    '.action-col-r h4.urg{background:#fef2f2;color:#dc2626}',
+    '.action-col-r h4.med{background:#fffbeb;color:#d97706}',
+    '.action-col-r h4.low{background:#f0fdf4;color:#16a34a}',
+    '.action-col-r li{font-size:11px;color:#475569;margin-bottom:5px;margin-left:16px}',
+    '@media print{body{padding:20px 30px}h1{font-size:18px}.kpis{grid-template-columns:repeat(3,1fr)}}',
+    '</style></head><body>',
+    '<h1>Relatorio de Acompanhamento de Obra</h1>',
+    '<div class="sub">Obra Boa Vista &mdash; Casa FL &bull; THY Engenharia / VMF Construcao &bull; Emitido em '+hoje+'</div>',
+
+    '<h2>Resumo Executivo</h2>',
+    '<div class="kpis">',
+    '<div class="kpi"><div class="lbl">Custo Total</div><div class="val">R$ 4.364.250</div><div class="pct">495 m&sup2; &bull; R$ 8.817/m&sup2;</div></div>',
+    '<div class="kpi"><div class="lbl">Gasto Realizado</div><div class="val">R$ 592.713</div><div class="pct">13,6% do orcamento</div></div>',
+    '<div class="kpi"><div class="lbl">Saldo Restante</div><div class="val">R$ 3.771.537</div><div class="pct">86,4% a executar</div></div>',
+    '<div class="kpi"><div class="lbl">Mao de Obra</div><div class="val">R$ 1.691.870</div><div class="pct">38,8% do total</div></div>',
+    '<div class="kpi"><div class="lbl">Material</div><div class="val">R$ 2.672.380</div><div class="pct">61,2% do total</div></div>',
+    '<div class="kpi"><div class="lbl">Empreiteiro Pago</div><div class="val">R$ 326.362</div><div class="pct">53% do contrato (R$610k)</div></div>',
+    '</div>',
+
+    '<h2>Progresso das Tarefas</h2>',
+    '<table><thead><tr><th>#</th><th>Tarefa</th><th>Inicio</th><th>Termino</th><th>Progresso</th><th>Status</th></tr></thead><tbody>'
+  ];
+
+  var taskData = [
+    [1,"Canteiro de obra","01/09/25","01/09/25","100%","Concluido"],
+    [2,"Demolicao","01/09/25","28/09/25","100%","Concluido"],
+    [3,"Alvenaria terreo","29/09/25","27/10/25","100%","Concluido"],
+    [4,"Alvenaria superior","29/09/25","27/10/25","100%","Concluido"],
+    [5,"Cobertura","28/10/25","27/11/25","100%","Concluido"],
+    [6,"Infra. Hidraulica","28/10/25","27/11/25","90%","Atrasado"],
+    [7,"Infra. Eletrica","28/10/25","27/11/25","90%","Atrasado"],
+    [8,"Infra. Ar-condicionado","28/11/25","27/12/25","0%","Atrasado"],
+    [9,"Reboco interno","28/11/25","27/12/25","0%","Atrasado"],
+    [10,"Reboco externo","28/11/25","27/12/25","0%","Atrasado"],
+    [11,"Acab. internos terreo","28/12/25","27/01/26","0%","Atrasado"],
+    [12,"Acab. internos superior","27/01/26","26/02/26","0%","Atrasado"],
+    [13,"Acab. externos","27/02/26","29/03/26","0%","Atrasado"],
+    [14,"Forro de gesso","30/03/26","29/04/26","0%","Atrasado"],
+    [15,"Pintura","30/03/26","30/05/26","0%","Pendente"],
+    [16,"Interruptores","01/05/26","31/05/26","0%","Pendente"],
+    [17,"Paisagismo","01/05/26","31/05/26","0%","Pendente"]
+  ];
+  taskData.forEach(function(t){
+    var color = t[4]==='100%'?'#16a34a':t[4]==='90%'?'#d97706':'#dc2626';
+    doc.push('<tr><td>'+t[0]+'</td><td>'+t[1]+'</td><td class="mono">'+t[2]+'</td><td class="mono">'+t[3]+'</td><td class="mono" style="color:'+color+'">'+t[4]+'</td><td>'+t[5]+'</td></tr>');
+  });
+  doc.push('</tbody></table>');
+
+  doc.push('<h2>Fluxo Financeiro Realizado</h2>');
+  doc.push('<table><thead><tr><th>Mes</th><th>Planejado</th><th>Realizado</th><th>Variacao</th></tr></thead><tbody>');
+  doc.push('<tr><td>Fev/2026</td><td class="mono">R$ 274.780</td><td class="mono">R$ 186.695</td><td class="mono" style="color:#d97706">-32%</td></tr>');
+  doc.push('<tr><td>Mar/2026</td><td class="mono">R$ 412.700</td><td class="mono">R$ 338.318</td><td class="mono" style="color:#d97706">-18%</td></tr>');
+  doc.push('<tr><td>Abr/2026</td><td class="mono">R$ 408.400</td><td class="mono">R$ 27.632</td><td class="mono" style="color:#dc2626">-93%</td></tr>');
+  doc.push('</tbody></table>');
+
+  doc.push('<h2>Top 10 Categorias por Custo</h2>');
+  var topCats = [
+    ["Equipe tecnica","R$ 502.320","11,5%"],["Esquadrias aluminio","R$ 500.000","11,5%"],
+    ["Pintura e textura","R$ 290.000","6,6%"],["Acab. int. terreo","R$ 271.000","6,2%"],
+    ["Marmore/Granito","R$ 270.000","6,2%"],["Impermeabilizacao","R$ 231.000","5,3%"],
+    ["Estrutura metalica","R$ 230.000","5,3%"],["Forro de gesso","R$ 168.000","3,9%"],
+    ["Acab. externos","R$ 138.000","3,2%"],["Ar Condicionado","R$ 130.000","3,0%"]
+  ];
+  doc.push('<table><thead><tr><th>Categoria</th><th>Valor</th><th>% do Total</th></tr></thead><tbody>');
+  topCats.forEach(function(c){
+    doc.push('<tr><td>'+c[0]+'</td><td class="mono">'+c[1]+'</td><td class="mono">'+c[2]+'</td></tr>');
+  });
+  doc.push('</tbody></table>');
+
+  doc.push('<h2>Alertas e Pontos de Atencao</h2>');
+  doc.push('<div class="alert red">10 tarefas com 0% de progresso ja ultrapassaram o prazo previsto. Atraso estimado de 4 a 6 meses.</div>');
+  doc.push('<div class="alert yellow">Hidraulica e Eletrica em 90% &mdash; prazo vencido ha 4+ meses. Necessario confirmar medicao fisica.</div>');
+  doc.push('<div class="alert yellow">Lancamentos financeiros ausentes entre Set/2025 e Jan/2026. Indicador de gasto pode estar subestimado.</div>');
+  doc.push('<div class="alert red">Gasto de Abr/2026 caiu para 6,7% do planejado &mdash; possivel obra parada.</div>');
+
+  doc.push('<h2>Plano de Acao</h2>');
+  doc.push('<div class="action-box">');
+  doc.push('<div class="action-col-r"><h4 class="urg">Imediato</h4><ul>');
+  doc.push('<li>Auditar lancamentos Set/2025 a Jan/2026</li>');
+  doc.push('<li>Medicao fisica de hidraulica e eletrica</li>');
+  doc.push('<li>Reuniao com empreiteiro FJ</li>');
+  doc.push('</ul></div>');
+  doc.push('<div class="action-col-r"><h4 class="med">30 dias</h4><ul>');
+  doc.push('<li>Replanejamento com datas realistas</li>');
+  doc.push('<li>Verificar materiais pre-comprados (2022)</li>');
+  doc.push('<li>Cotar ar-condicionado, reboco, acabamentos</li>');
+  doc.push('</ul></div>');
+  doc.push('<div class="action-col-r"><h4 class="low">Continuo</h4><ul>');
+  doc.push('<li>Lancar pagamentos no dia</li>');
+  doc.push('<li>Atualizar progresso semanalmente</li>');
+  doc.push('<li>Monitorar custo equipe tecnica</li>');
+  doc.push('</ul></div>');
+  doc.push('</div>');
+
+  doc.push('<h2>Custo Estimado do Atraso</h2>');
+  doc.push('<table><tbody>');
+  doc.push('<tr><td>Equipe tecnica (fixo mensal)</td><td class="mono">R$ 42.000/mes</td></tr>');
+  doc.push('<tr><td>Inflacao materiais estimada</td><td class="mono">R$ 40.000/mes</td></tr>');
+  doc.push('<tr><td>Meses de atraso projetados</td><td class="mono">4 a 6 meses</td></tr>');
+  doc.push('<tr style="border-top:2px solid #0f172a"><td><strong>Custo adicional total estimado</strong></td><td class="mono" style="color:#dc2626"><strong>R$ 328.000 a R$ 492.000</strong></td></tr>');
+  doc.push('</tbody></table>');
+
+  doc.push('<div class="footer">');
+  doc.push('VMF Construcao e Incorporacao Ltda &bull; CNPJ: 49.017.772/0001-25 &bull; contato@vmfengenharia.com<br>');
+  doc.push('Relatorio gerado automaticamente em '+hoje+' &bull; Dados extraidos da planilha de controle da obra');
+  doc.push('</div>');
+  doc.push('</body></html>');
+
+  var content = doc.join('\n');
+  var blob = new Blob([content], {type: 'text/html;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'Relatorio_Obra_Boa_Vista_'+hoje.replace(/\//g,'-')+'.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 </script>
 </body>
 </html>
