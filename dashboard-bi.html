@@ -902,17 +902,218 @@ body::before {
 .btn-download:active { transform:translateY(0); }
 
 /* ═══ RESPONSIVE ═══ */
+
+/* Tablet landscape */
 @media (max-width: 1200px) {
   .kpi-grid { grid-template-columns: repeat(3, 1fr); }
   .grid-2, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+  .action-grid { grid-template-columns: 1fr 1fr 1fr; }
 }
+
+/* Tablet portrait */
 @media (max-width: 768px) {
-  .kpi-grid { grid-template-columns: 1fr 1fr; }
-  .dashboard { padding: 16px; }
-  .project-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .project-meta { flex-wrap: wrap; gap: 16px; }
+  .dashboard { padding: 16px 14px 48px; }
+
+  /* Topbar */
+  .topbar { padding: 0 14px; height: 54px; }
+  .topbar-title { font-size: 13px; letter-spacing: 0.3px; }
+  .topbar-title span { display: none; }
+  .topbar-badge { display: none; }
+  .topbar-right { gap: 12px; font-size: 12px; }
+
+  /* Project header */
+  .project-header { flex-direction: column; align-items: flex-start; gap: 14px; padding-bottom: 18px; margin-bottom: 20px; }
+  .project-header h1 { font-size: 24px; }
+  .project-header h1 small { font-size: 12px; }
+  .project-meta { flex-wrap: wrap; gap: 16px 24px; }
   .meta-item { text-align: left; }
-  .topbar { padding: 0 16px; }
+  .meta-item .label { font-size: 10px; }
+  .meta-item .value { font-size: 14px; }
+
+  /* KPI */
+  .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .kpi-card { padding: 18px 16px; }
+  .kpi-label { font-size: 9px; letter-spacing: 1px; margin-bottom: 8px; }
+  .kpi-value { font-size: 22px; }
+  .kpi-sub { font-size: 12px; }
+
+  /* Section titles */
+  .section-title { font-size: 11px; margin-top: 28px; margin-bottom: 12px; }
+
+  /* Panels */
+  .panel { padding: 18px 14px; }
+  .panel-header { flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .panel-title { font-size: 13px; }
+  .panel-badge { font-size: 10px; padding: 3px 8px; }
+
+  /* Alerts */
+  .alerts-bar { padding: 14px 16px; gap: 14px; flex-direction: column; }
+  .alert-icon { width: 30px; height: 30px; font-size: 15px; }
+  .alert-content h3 { font-size: 13px; }
+  .alert-items { gap: 6px; }
+  .alert-tag { font-size: 11px; padding: 5px 10px; }
+
+  /* Gantt */
+  .gantt-months-row { margin-left: 122px; }
+  .gantt-month-label { font-size: 9px; }
+  .gantt-row { height: 30px; gap: 8px; }
+  .gantt-label { width: 110px; font-size: 11px; }
+  .gantt-track { height: 16px; }
+  .gantt-bar { height: 14px; font-size: 9px; padding-right: 4px; }
+
+  /* Bar charts */
+  .bar-chart-row { gap: 8px; margin-bottom: 6px; }
+  .bar-chart-label { width: 110px; font-size: 11px; }
+  .bar-chart-track { height: 18px; }
+  .bar-mdo, .bar-mat { font-size: 9px; }
+  .bar-chart-value { width: 75px; font-size: 11px; }
+
+  /* Vertical bar chart */
+  .vbar-chart { height: 150px; gap: 4px; }
+  .vbar-label { font-size: 9px; }
+
+  /* Donut */
+  .donut-container { flex-direction: column; align-items: center; gap: 18px; }
+  .donut-wrapper { width: 160px; height: 160px; }
+  .donut-legend { grid-template-columns: 1fr 1fr; gap: 4px 12px; }
+  .legend-item { font-size: 11px; gap: 6px; }
+
+  /* Gauge */
+  .gauge-container { flex-direction: column; align-items: center; gap: 18px; }
+  .gauge { width: 140px; height: 140px; }
+  .gauge-pct { font-size: 26px; }
+  .gauge-detail-row { font-size: 13px; padding: 8px 0; }
+
+  /* Tables */
+  .data-table th { font-size: 10px; padding: 8px 8px; }
+  .data-table td { font-size: 12px; padding: 9px 8px; }
+  .data-table .mono { font-size: 11px; }
+
+  /* Expenses */
+  .expense-month-header { font-size: 13px; }
+  .expense-item { font-size: 12px; padding: 6px 0; }
+  .expense-item .cat { font-size: 10px; padding: 2px 6px; }
+
+  /* Analysis */
+  .analysis-panel .analysis-text { font-size: 13px; }
+  .analysis-bar-label { width: 120px; font-size: 12px; }
+  .analysis-bar-track { height: 18px; }
+  .analysis-bar-pct { font-size: 13px; width: 50px; }
+  .analysis-flow { flex-direction: column; gap: 8px; }
+  .flow-val { font-size: 18px; }
+  .flow-month { font-size: 11px; }
+  .flow-pct { font-size: 11px; }
+  .action-grid { grid-template-columns: 1fr; gap: 12px; }
+  .action-header { font-size: 12px; }
+  .action-item { font-size: 13px; padding: 8px 12px; }
+  .cost-row { font-size: 13px; padding: 10px 0; }
+
+  /* Download */
+  .btn-download { font-size: 13px; padding: 14px 32px; width: 100%; }
+
+  /* Grids stack */
+  .grid-2, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+  .dashboard { padding: 12px 10px 40px; }
+
+  /* Topbar */
+  .topbar { padding: 0 10px; height: 50px; gap: 8px; }
+  .logo-mark { width: 28px; height: 28px; font-size: 14px; }
+  .topbar-title { font-size: 11px; }
+  .topbar-right { gap: 8px; font-size: 11px; }
+  .theme-label { display: none; }
+  .theme-toggle { width: 38px; height: 20px; }
+  .theme-toggle::after { width: 14px; height: 14px; }
+  [data-theme="light"] .theme-toggle::after { transform: translateX(18px); }
+  .topbar-dot { width: 6px; height: 6px; }
+
+  /* Header */
+  .project-header h1 { font-size: 20px; }
+  .project-header h1 small { font-size: 11px; line-height: 1.5; }
+  .project-meta { gap: 12px 20px; }
+  .meta-item .label { font-size: 9px; }
+  .meta-item .value { font-size: 13px; }
+
+  /* KPI */
+  .kpi-grid { grid-template-columns: 1fr; gap: 8px; }
+  .kpi-card { padding: 16px 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+  .kpi-label { margin-bottom: 0; flex-basis: 100%; font-size: 9px; }
+  .kpi-value { font-size: 24px; }
+  .kpi-sub { font-size: 12px; margin-top: 0; }
+  .kpi-progress { flex-basis: 100%; margin-top: 8px; }
+
+  /* Panels */
+  .panel { padding: 14px 12px; border-radius: 8px; }
+  .panel-title { font-size: 12px; }
+
+  /* Section */
+  .section-title { font-size: 10px; letter-spacing: 1px; margin-top: 24px; }
+
+  /* Alerts */
+  .alerts-bar { padding: 12px; }
+  .alert-content h3 { font-size: 12px; }
+  .alert-tag { font-size: 10px; padding: 4px 8px; }
+
+  /* Gantt - horizontal scroll */
+  .gantt { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+  .gantt-months-row { margin-left: 102px; min-width: 400px; }
+  .gantt-row { min-width: 400px; }
+  .gantt-label { width: 90px; font-size: 10px; }
+  .gantt-track { min-width: 300px; }
+  .gantt-bar { font-size: 8px; height: 12px; }
+  .gantt-month-label { font-size: 8px; }
+
+  /* Bar charts - horizontal scroll */
+  .bar-chart-row { min-width: 0; }
+  .bar-chart-label { width: 90px; font-size: 10px; }
+  .bar-chart-track { height: 16px; min-width: 0; }
+  .bar-mdo, .bar-mat { font-size: 8px; }
+  .bar-chart-value { width: 65px; font-size: 10px; }
+
+  /* Vertical bars */
+  .vbar-chart { height: 120px; gap: 3px; }
+  .vbar-label { font-size: 8px; letter-spacing: 0; }
+
+  /* Donut */
+  .donut-wrapper { width: 140px; height: 140px; }
+  .donut-center-val { font-size: 20px; }
+  .donut-center-label { font-size: 10px; }
+  .donut-legend { grid-template-columns: 1fr; gap: 3px; }
+  .legend-item { font-size: 11px; }
+
+  /* Gauge */
+  .gauge { width: 120px; height: 120px; }
+  .gauge-pct { font-size: 22px; }
+  .gauge-label { font-size: 10px; }
+  .gauge-detail-row { font-size: 12px; padding: 7px 0; }
+
+  /* Tables */
+  .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .data-table th { font-size: 9px; padding: 6px 6px; white-space: nowrap; }
+  .data-table td { font-size: 11px; padding: 7px 6px; white-space: nowrap; }
+
+  /* Expenses */
+  .expense-item { flex-wrap: wrap; gap: 4px; }
+  .expense-item .desc { flex-basis: 100%; font-size: 12px; }
+  .expense-item .cat { font-size: 9px; }
+  .expense-item .val { font-size: 13px; }
+
+  /* Analysis */
+  .analysis-panel .analysis-text { font-size: 12px; }
+  .analysis-bar-label { width: 100px; font-size: 11px; }
+  .analysis-bar-track { height: 16px; }
+  .analysis-bar-pct { font-size: 12px; width: 45px; }
+  .analysis-highlight { padding: 12px 14px; font-size: 12px; }
+  .flow-item { padding: 8px; }
+  .flow-val { font-size: 16px; }
+  .action-item { font-size: 12px; padding: 8px 10px; }
+  .cost-row { font-size: 12px; }
+
+  /* Download */
+  .btn-download { padding: 14px 20px; font-size: 12px; letter-spacing: 0.5px; }
 }
 </style>
 </head>
